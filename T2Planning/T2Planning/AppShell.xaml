@@ -9,7 +9,7 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.BackgroundColor" Value="#EB62B9" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
@@ -60,8 +60,12 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
-
-    <FlyoutItem Title="Bảng" Icon="icon_about.png">
+    
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
+    
+    <FlyoutItem Title="Bảng" Icon="TableIcon.png">
         <ShellContent Route="MyTable" ContentTemplate="{DataTemplate local:MyTable}" />
     </FlyoutItem>
     <FlyoutItem Title="Các thẻ của tôi" Icon="icon_about.png">

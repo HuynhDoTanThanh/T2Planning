@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using T2Planning.Models;
 using T2Planning.Services;
+using T2Planning.Views.Create;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -53,6 +54,7 @@ namespace T2Planning.Views
 
         private void addCard_Clicked(object sender, EventArgs e)
         {
+            Navigation.PushAsync(new CreateCard());
         }
     }
 }

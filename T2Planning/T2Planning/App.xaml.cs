@@ -21,15 +21,8 @@ namespace T2Planning
             {
 
             }
-            auth = DependencyService.Get<IAuth>();
-            if (auth.IsSignIn())
-            {
-                MainPage = new AppShell();
-            }
-            else
-            {
-                MainPage = new NavigationPage(new LoginPage());
-            }
+            MainPage = new AppShell();
+            
         }
 
         protected override void OnStart()

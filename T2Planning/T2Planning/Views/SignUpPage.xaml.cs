@@ -28,7 +28,7 @@ namespace T2Planning.Views
 
                 if (signout)
                 {
-                    Application.Current.MainPage = new LoginPage();
+                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
                 }
                 else
                 {

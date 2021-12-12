@@ -21,22 +21,22 @@ namespace T2Planning.Views
             ListViewInit();
         }
 
-        private void logout_Clicked(object sender, EventArgs e)
+        private async void logout_Clicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();
             if (signOut)
             {
-                Application.Current.MainPage = new LoginPage();
+                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
             }
         }
 
-        private void lstTable_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void lstTable_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (lstTable.SelectedItem != null)
             {
                 Table table = (Table)lstTable.SelectedItem;
 
-                Navigation.PushAsync(new TableDetail(table));
+                await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new TableDetail(table)));
             }
         }
 

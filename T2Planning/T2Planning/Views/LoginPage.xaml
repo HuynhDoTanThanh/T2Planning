@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="T2Planning.Views.LoginPage">
+             x:Class="T2Planning.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             Shell.FlyoutBehavior="Disabled">
     <ContentPage.Content>
         <StackLayout
         VerticalOptions="Center"
         Margin="20">
-
-            <Label
-            Text="FireAuth"
-            HorizontalOptions="Center"
-            TextColor="#4682B4"
-            FontSize="35"
-            Margin="0, 20" />
-
+            <Image Source="LogoT2.png"/>
+            <BoxView/>
+            
             <Entry
             Placeholder="E-mail"
             Keyboard="Email"

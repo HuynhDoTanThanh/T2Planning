@@ -2,24 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:views="clr-namespace:T2Planning.Views"
-             x:Class="T2Planning.Views.MyTable">
+             x:Class="T2Planning.Views.MyTable"
+             BackgroundColor="#FEC9DD">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="icon_about.png"/>
-        <ToolbarItem IconImageSource="icon_about.png" x:Name="logout" Clicked="logout_Clicked"/>
+        <ToolbarItem IconImageSource="logout.jpg" x:Name="logout" Clicked="logout_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Rỗng" x:Name="note"/>
-            <ListView x:Name="lstTable" ItemTapped="lstTable_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Label Text="{Binding tableName}"/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <views:IconPlus VerticalOptions="End" Padding="30"/>
+        <StackLayout  VerticalOptions="Start" BackgroundColor="#FD9BC7" Padding="5, 10" >
+            <Label Text="Rỗng" x:Name="note" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Frame BorderColor="Gray"
+                   CornerRadius="10"
+                   Padding="5, 5"
+                   BackgroundColor="#FEC9DD">
+                <StackLayout>
+                    <ListView x:Name="lstTable" ItemTapped="lstTable_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding tableName}" BackgroundColor="#FEC9DD" Padding="10, 10" FontSize="15"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+            <views:IconPlus VerticalOptions="End" Padding="10, 10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

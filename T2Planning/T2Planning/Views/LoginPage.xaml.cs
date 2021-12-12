@@ -17,14 +17,25 @@ namespace T2Planning.Views
         public LoginPage()
         {
             InitializeComponent();
-            auth = DependencyService.Get<IAuth>();
+
+            loggedin();
         }
+
+        async void loggedin()
+        {
+            auth = DependencyService.Get<IAuth>();
+            if (auth.IsSignIn())
+            {
+                await Shell.Current.GoToAsync($"//{nameof(MyTable)}");
+            }
+        }
+
         async void LoginClicked(object sender, EventArgs e)
         {
             string token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
             if (token != string.Empty)
             {
-                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync($"//{nameof(MyTable)}");
             }
             else
             {
@@ -39,5 +50,6 @@ namespace T2Planning.Views
                 Navigation.PushAsync(new SignUpPage());
             }
         }
+
     }
 }
