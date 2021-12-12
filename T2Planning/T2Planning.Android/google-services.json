@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "475757890535",
+    "firebase_url": "https://fir-app-306c3-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fir-app-306c3",
+    "storage_bucket": "fir-app-306c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475757890535:android:232009e7f12d14506e0b42",
+        "android_client_info": {
+          "package_name": "com.companyname.firebaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475757890535-frdaa0mcgtu15gde7dq8i2dhntaukp2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdqVRkz53djOwMtBq1XQLVV_gj-zw1u5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475757890535-frdaa0mcgtu15gde7dq8i2dhntaukp2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475757890535:android:d6514d058669e3176e0b42",
+        "android_client_info": {
+          "package_name": "com.companyname.t2planning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475757890535-frdaa0mcgtu15gde7dq8i2dhntaukp2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdqVRkz53djOwMtBq1XQLVV_gj-zw1u5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475757890535-frdaa0mcgtu15gde7dq8i2dhntaukp2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

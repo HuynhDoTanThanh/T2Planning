@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="T2Planning.Views.TableDetail"
+             BackgroundColor="DarkBlue">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Thêm danh sách" x:Name="addlst" 
+                    HorizontalOptions="Center" BackgroundColor="White" 
+                    Padding="70, 10, 70, 10" TextColor="Black" Margin="20" 
+                    FontSize="18" Clicked="addlst_Clicked"/>
+            <CarouselView x:Name="lstcard" Margin="20">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True"
+                               BorderColor="Gray"
+                               CornerRadius="5"
+                               Margin="20"
+                               HeightRequest="450"
+                               WidthRequest="100"
+                               HorizontalOptions="Center"
+                               VerticalOptions="CenterAndExpand">
+                            <StackLayout>
+                                <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="150">
+                                    <Label Text="{Binding listCardName}"
+                                           FontSize="Large"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"
+                                           Grid.Column="0"/>
+                                    <Button Text="+" 
+                                            x:Name="addCard"
+                                            FontSize="Large"
+                                            FontAttributes="Bold"
+                                            TextColor="Green"
+                                            BackgroundColor="Transparent"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Grid.Column="1"
+                                            Clicked="addCard_Clicked"/>
+                                </Grid>
+                                <Line X1="0"
+                                      Y1="0"
+                                      X2="310"
+                                      Y2="0"
+                                      StrokeThickness="3"
+                                      Stroke="Gray" />
+                                <ListView ItemsSource="{Binding cards}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding cardName}"/>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

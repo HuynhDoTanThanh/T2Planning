@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:views="clr-namespace:T2Planning.Views"
+             x:Class="T2Planning.Views.MyTable">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icon_about.png"/>
+        <ToolbarItem IconImageSource="icon_about.png" x:Name="logout" Clicked="logout_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Rỗng" x:Name="note"/>
+            <ListView x:Name="lstTable" ItemTapped="lstTable_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding tableName}"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <views:IconPlus VerticalOptions="End" Padding="30"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

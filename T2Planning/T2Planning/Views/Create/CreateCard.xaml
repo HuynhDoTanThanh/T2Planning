@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="T2Planning.Views.Create.CreateCard">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icon_about.png"/>
+        <ToolbarItem IconImageSource="icon_about.png"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label Text="Bảng" TextColor="Gray"/>
+            <Picker x:Name="table" />
+            <Label Text="Danh sách" TextColor="Gray"/>
+            <Picker x:Name="list"/>
+            <BoxView/>
+            <Frame BorderColor="Blue">
+                <StackLayout>
+                    <Entry Placeholder="Tên thẻ" x:Name="cardName"/>
+                    <Entry Placeholder="Mô tả" x:Name="description"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_about.png"/>
+                        <Frame BackgroundColor="#5ddb59" CornerRadius="50" HasShadow="True"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                           Padding="21, 12, 21, 12">
+                            <Label Text="+" TextColor="White" FontSize="23" x:Name="FloatingActionButton"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="addMember"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </StackLayout>
+                    <Grid ColumnDefinitions="*, 2*" RowDefinitions="*, *">
+                        <Label Text="Deadline" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" FontSize="Large" VerticalOptions="Center"/>
+                        <DatePicker x:Name="deadlineDay" Grid.Column="1" Grid.Row="0">
+                        </DatePicker>
+                        <TimePicker x:Name="deadlineTime" Grid.Column="1" Grid.Row="1">
+                        </TimePicker>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
