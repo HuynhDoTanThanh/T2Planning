@@ -3,12 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:views="clr-namespace:T2Planning.Views"
              x:Class="T2Planning.Views.MyCard">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="logout.jpg" x:Name="logout" Clicked="logout_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <views:IconPlus VerticalOptions="End" Padding="30"/>
+            <Frame BorderColor="Gray"
+                   Padding="5, 5"
+                   BackgroundColor="#FEC9DD">
+                <ListView x:Name="lstCard" ItemTapped="lstCard_ItemTapped"
+                          xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="ConsumerBanking.UserControls.AccountsListView"
+                          SeparatorVisibility="None"
+                          BackgroundColor="Transparent"
+                          HasUnevenRows="True" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BorderColor="Gray"
+                                       CornerRadius="10"
+                                       Padding="5, 5"
+                                       BackgroundColor="#FDECEB"
+                                       Margin="5">
+                                    <Grid RowDefinitions="*, *, *"
+                                          ColumnDefinitions="*, 50">
+                                        
+                                        <Label Text="{Binding cardName}" 
+                                               BackgroundColor="#FDECEB" 
+                                               Padding="10, 10" FontSize="20"
+                                               Grid.Row="0" Grid.Column="0"
+                                               FontAttributes="Bold"/>
+                                        <ImageButton x:Name="deleteCard"
+                                                     Source="delete.png"
+                                                     Clicked="deleteCard_Clicked"
+                                                     WidthRequest="30" HeightRequest="30"
+                                                     HorizontalOptions="Start" VerticalOptions="End"
+                                                     BackgroundColor="Transparent"
+                                                     Grid.Column="1"
+                                                     Grid.Row="0"/>
+                                        <Label Text="{Binding cardDeadline}" 
+                                               BackgroundColor="#FDECEB" 
+                                               Padding="10, 10" FontSize="15"
+                                               Grid.Row="1" Grid.Column="0"/>
+                                        <Label Text="{Binding cardDescription}" 
+                                               BackgroundColor="#FDECEB" 
+                                               Padding="10, 10" FontSize="15"
+                                               Grid.Row="2" Grid.Column="0"/>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
