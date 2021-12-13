@@ -3,20 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="T2Planning.Views.Create.CreateCard">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="icon_about.png"/>
-        <ToolbarItem IconImageSource="icon_about.png"/>
+        <ToolbarItem IconImageSource="icon_about.png" x:Name="create" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label Text="Bảng" TextColor="Gray"/>
-            <Picker x:Name="table" />
+            <Picker x:Name="tablechoose" Title="Chon bang" SelectedIndexChanged="tablechoose_SelectedIndexChanged" />
             <Label Text="Danh sách" TextColor="Gray"/>
-            <Picker x:Name="list"/>
+            <Picker x:Name="listchoose" Title="Chon danh sach" SelectedIndexChanged="listchoose_SelectedIndexChanged" />
             <BoxView/>
             <Frame BorderColor="Blue">
                 <StackLayout>
-                    <Entry Placeholder="Tên thẻ" x:Name="cardName"/>
-                    <Entry Placeholder="Mô tả" x:Name="description"/>
+                    <Entry Placeholder="Tên thẻ" x:Name="cardName" />
+                    <Entry Placeholder="Mô tả" x:Name="cardDescription"/>
                     <StackLayout Orientation="Horizontal">
                         <Image Source="icon_about.png"/>
                         <Frame BackgroundColor="#5ddb59" CornerRadius="50" HasShadow="True"

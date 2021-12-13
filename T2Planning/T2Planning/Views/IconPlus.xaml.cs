@@ -48,14 +48,14 @@ namespace T2Planning.Views
         }
 
 
-        private void FloatMenuItem2Tap_Tapped(object sender, EventArgs e)
+        private async void FloatMenuItem2Tap_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CreateTable());
+            await Navigation.PushAsync(new CreateTable());
         }
 
-        private void FloatMenuItem1Tap_Tapped(object sender, EventArgs e)
+        private async void FloatMenuItem1Tap_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CreateCard());
+            await Navigation.PushAsync(new CreateCard());
         }
     }
 }

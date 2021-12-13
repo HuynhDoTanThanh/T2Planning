@@ -76,7 +76,7 @@ namespace T2Planning.Services
                 return false;
             }
         }
-        public List<Table> GetTableWork()
+        public List<Table> GetTable()
         {
             try
             {
@@ -124,7 +124,7 @@ namespace T2Planning.Services
             {
                 string path = System.IO.Path.Combine(folder, "t2planning.db");
                 var connection = new SQLiteConnection(path);
-                return connection.Query<Card>("select * from Book where listCardId=" + listCardId.ToString());
+                return connection.Query<Card>("select * from Card where listCardId=" + listCardId.ToString());
             }
             catch
             {

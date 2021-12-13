@@ -45,7 +45,7 @@ namespace T2Planning.Views
             Database db = new Database();
             List<Table> tableworks = new List<Table>();
 
-            tableworks = db.GetTableWork();
+            tableworks = db.GetTable();
             if (tableworks.Count != 0)
             {
                 note.Text = "Bảng của Thành";

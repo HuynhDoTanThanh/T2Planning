@@ -28,13 +28,20 @@ namespace T2Planning.Views
         {
             string listCardName = await DisplayPromptAsync("Tạo danh sách mới", "Tên danh sách");
 
-            ListCard listCard = new ListCard() { listCardName = listCardName, tableId = mytable.tableId };
+            if(string.IsNullOrWhiteSpace(listCardName))
+            {
+                await DisplayAlert("Thông báo", "Tạo mới that bai", "Ok");
+            }
+            else
+            {
+                ListCard listCard = new ListCard() { listCardName = listCardName, tableId = mytable.tableId };
 
-            db.AddNewListCard(listCard);
+                db.AddNewListCard(listCard);
 
-            init();
+                init();
 
-            await DisplayAlert("Thông báo", "Tạo mới thành công" + "\nTên danh sách: " + listCardName, "Ok");
+                await DisplayAlert("Thông báo", "Tạo mới thành công" + "\nTên danh sách: " + listCardName, "Ok");
+            }
         }
 
         void init()

@@ -64,7 +64,6 @@ namespace T2Planning.Views.Create
                 return true;
             }
             return false;
-
         }
 
         void affordCreate()

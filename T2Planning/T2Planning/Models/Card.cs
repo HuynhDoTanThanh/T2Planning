@@ -13,8 +13,6 @@ namespace T2Planning.Models
         public int listCardId { get; set; }
         public string cardName { get; set; }
         public string cardDescription { get; set; }
-        public DateTime cardDlDay { get; set; }
-        public TimeSpan cardDlTime { get; set; }
-        public int userId { get; set; }
+        public DateTime cardDeadline { get; set; }
     }
 }

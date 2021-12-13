@@ -10,7 +10,15 @@
                     Padding="70, 10, 70, 10" TextColor="Black" Margin="20" 
                     FontSize="18" Clicked="addlst_Clicked" 
                     BorderColor="Black" CornerRadius="10"/>
-            <CarouselView x:Name="lstcard" Margin="20">
+            <CarouselView x:Name="lstcard"
+                          IndicatorView="Indicator"
+	                      EmptyView="No columns to display"
+	                      Loop="False"
+	                      PeekAreaInsets="10"
+                          Margin="5, 10">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
+                </CarouselView.ItemsLayout>
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <Frame HasShadow="True"
@@ -60,6 +68,11 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+            <IndicatorView
+	            x:Name="Indicator"
+	            HorizontalOptions="Center"
+	            IndicatorColor="White"
+	            SelectedIndicatorColor="Black"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

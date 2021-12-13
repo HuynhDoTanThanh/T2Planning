@@ -24,9 +24,9 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <views:IconPlus VerticalOptions="End" Padding="10, 10"/>
                 </StackLayout>
             </Frame>
-            <views:IconPlus VerticalOptions="End" Padding="10, 10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
