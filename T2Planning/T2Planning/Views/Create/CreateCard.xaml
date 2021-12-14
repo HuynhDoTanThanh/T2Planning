@@ -1,35 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="T2Planning.Views.Create.CreateCard">
+             x:Class="T2Planning.Views.Create.CreateCard"
+             BackgroundColor="#FEC9DD">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="icon_about.png" x:Name="create" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem IconImageSource="save.png" x:Name="create" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Bảng" TextColor="Gray"/>
-            <Picker x:Name="tablechoose" Title="Chon bang" SelectedIndexChanged="tablechoose_SelectedIndexChanged" />
-            <Label Text="Danh sách" TextColor="Gray"/>
-            <Picker x:Name="listchoose" Title="Chon danh sach" SelectedIndexChanged="listchoose_SelectedIndexChanged" />
-            <BoxView/>
-            <Frame BorderColor="Blue">
+            <Frame BorderColor="Gray"
+                    CornerRadius="10"
+                    Padding="5, 5"
+                    BackgroundColor="#FDECEB"
+                    Margin="5">
                 <StackLayout>
-                    <Entry Placeholder="Tên thẻ" x:Name="cardName" />
+                    <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
+                    <Picker x:Name="tablechoose" Title="Chọn bảng" SelectedIndexChanged="tablechoose_SelectedIndexChanged" />
+                    <Label Text="Danh sách" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
+                    <Picker x:Name="listchoose" Title="Chọn danh sách" SelectedIndexChanged="listchoose_SelectedIndexChanged" />
+                    <Label Text="Tên thẻ" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
+                    <Entry Placeholder="Tên thẻ (bắt buộc)" x:Name="cardName" />
+                    <Label Text="Mô tả" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
                     <Entry Placeholder="Mô tả" x:Name="cardDescription"/>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="icon_about.png"/>
-                        <Frame BackgroundColor="#5ddb59" CornerRadius="50" HasShadow="True"
-                           AbsoluteLayout.LayoutFlags="PositionProportional"
-                           AbsoluteLayout.LayoutBounds="1,1,-1,-1"
-                           Padding="21, 12, 21, 12">
-                            <Label Text="+" TextColor="White" FontSize="23" x:Name="FloatingActionButton"/>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="addMember"/>
-                            </Frame.GestureRecognizers>
-                        </Frame>
-                    </StackLayout>
+
                     <Grid ColumnDefinitions="*, 2*" RowDefinitions="*, *">
-                        <Label Text="Deadline" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" FontSize="Large" VerticalOptions="Center"/>
+                        <Label Text="Deadline" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" FontSize="Large" VerticalOptions="Center" FontAttributes="Bold" Padding="10"/>
                         <DatePicker x:Name="deadlineDay" Grid.Column="1" Grid.Row="0">
                         </DatePicker>
                         <TimePicker x:Name="deadlineTime" Grid.Column="1" Grid.Row="1">

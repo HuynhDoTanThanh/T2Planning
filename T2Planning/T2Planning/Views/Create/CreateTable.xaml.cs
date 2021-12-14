@@ -49,7 +49,7 @@ namespace T2Planning.Views.Create
             if (db.AddNewTable(table))
             {
                 DisplayAlert("Tạo bảng", "Tạo bảng thành công\n" + "name: " + table.tableName + "\nNhom: " + table.tableTeam.ToString() + "\nQuyen: " + table.tablePermission.ToString(), "OK");
-                Application.Current.MainPage = new AppShell();
+                Application.Current.MainPage = new MainPage();
             }
             else
             {

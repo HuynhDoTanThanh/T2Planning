@@ -21,7 +21,7 @@ namespace T2Planning
             {
 
             }
-            MainPage = new AppShell();
+            MainPage = new MainPage();
             
         }
 

@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:T2Planning.Views"
-       Title="T2-Planning"
-       x:Class="T2Planning.AppShell">
-
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="T2Planning.Views.MainPage"
+             xmlns:local="clr-namespace:T2Planning.Views">
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="#EB62B9" />
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
@@ -60,19 +57,26 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
-    
+    <Shell.FlyoutHeader>
+        <local:HeaderContentView/>
+    </Shell.FlyoutHeader>
+    <FlyoutItem Title="MyTabApp"
+                Shell.TabBarIsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="My table" 
+                      Icon="table.png" IsTabStop="True"
+                      Route="MyTable"
+                      ContentTemplate="{DataTemplate local:MyTable}"/>
+        <ShellContent Title="My card" 
+                      Icon="logout.png" IsTabStop="True" 
+                      Route="MyCard"
+                      ContentTemplate="{DataTemplate local:MyCard}"/>
+    </FlyoutItem>
     <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
     </ShellItem>
-    
-    <FlyoutItem Title="Bảng" Icon="TableIcon.png">
-        <ShellContent Route="MyTable" ContentTemplate="{DataTemplate local:MyTable}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Các thẻ của tôi" Icon="icon_about.png">
-        <ShellContent Route="MyCard" ContentTemplate="{DataTemplate local:MyCard}" />
-    </FlyoutItem>
+
     <FlyoutItem Title="Cài đặt" Icon="icon_feed.png">
         <ShellContent Route="Setting" ContentTemplate="{DataTemplate local:Setting}" />
     </FlyoutItem>
-    
 </Shell>

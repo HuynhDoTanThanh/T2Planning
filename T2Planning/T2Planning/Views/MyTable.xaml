@@ -8,37 +8,32 @@
         <ToolbarItem IconImageSource="logout.jpg" x:Name="logout" Clicked="logout_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout  VerticalOptions="Start" BackgroundColor="#FD9BC7" Padding="5, 10" >
-            <Label Text="Rỗng" x:Name="note" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-            <Frame BorderColor="Gray"
-                   CornerRadius="10"
-                   Padding="5, 5"
-                   BackgroundColor="#FEC9DD">
-                <StackLayout>
-                    <ListView x:Name="lstTable" ItemTapped="lstTable_ItemTapped"
-                              xmlns="http://xamarin.com/schemas/2014/forms"
-                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              x:Class="ConsumerBanking.UserControls.AccountsListView"
-                              SeparatorVisibility="None"
-                              BackgroundColor="Transparent"
-                              HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame BorderColor="Gray"
-                                           CornerRadius="10"
-                                           Padding="5, 5"
-                                           BackgroundColor="#FDECEB"
-                                           Margin="5">
-                                        <Label Text="{Binding tableName}" BackgroundColor="#FDECEB" Padding="10, 10" FontSize="15"/>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <views:IconPlus VerticalOptions="End" Padding="10, 10"/>
-                </StackLayout>
-            </Frame>
+        <StackLayout  VerticalOptions="Start" BackgroundColor="#FDECEB" Padding="5, 10" >
+        
+            <Label Text="Rỗng" x:Name="note" FontSize="30" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <ListView x:Name="lstTable" ItemTapped="lstTable_ItemTapped"
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        x:Class="ConsumerBanking.UserControls.AccountsListView"
+                        SeparatorVisibility="None"
+                        BackgroundColor="Transparent"
+                        HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BorderColor="Gray"
+                                    CornerRadius="10"
+                                    Padding="5, 5"
+                                    BackgroundColor="White"
+                                    Margin="5">
+                                <Label Text="{Binding tableName}" BackgroundColor="White" Padding="10, 10" FontSize="15"/>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <views:IconPlus VerticalOptions="End" Padding="10, 10"/>
         </StackLayout>
+          
     </ContentPage.Content>
 </ContentPage>

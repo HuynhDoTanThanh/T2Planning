@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using T2Planning.Views;
-using Xamarin.Forms;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace T2Planning
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace T2Planning.Views
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MainPage : Shell
     {
-        public AppShell()
+        public MainPage()
         {
             InitializeComponent();
 
@@ -15,6 +20,5 @@ namespace T2Planning
             Routing.RegisterRoute(nameof(MyCard), typeof(MyCard));
             Routing.RegisterRoute(nameof(Setting), typeof(Setting));
         }
-
     }
 }

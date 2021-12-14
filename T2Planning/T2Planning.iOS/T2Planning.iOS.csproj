@@ -132,9 +132,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.SfKanban">
-      <Version>19.3.0.57</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -144,5 +141,8 @@
       <Project>{ED7F3C01-F925-4703-8A76-0DF684DC04DE}</Project>
       <Name>T2Planning</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\table.png" />
   </ItemGroup>
 </Project>

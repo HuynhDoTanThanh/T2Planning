@@ -5,11 +5,15 @@
              BackgroundColor="#FEC9DD">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Thêm danh sách" x:Name="addlst" 
-                    HorizontalOptions="Center" BackgroundColor="White" 
-                    Padding="70, 10, 70, 10" TextColor="Black" Margin="20" 
-                    FontSize="18" Clicked="addlst_Clicked" 
-                    BorderColor="Black" CornerRadius="10"/>
+            <Frame  Margin="20"
+                    BorderColor="Gray" CornerRadius="10"
+                    HorizontalOptions="Center" 
+                    Padding="50, 5, 50, 5" >
+                <Button Text="Thêm danh sách" x:Name="addlst" 
+                        BackgroundColor="White" 
+                        TextColor="Black"
+                        FontSize="18" Clicked="addlst_Clicked"/>
+            </Frame>
             <CarouselView x:Name="lstcard"
                           IndicatorView="Indicator"
 	                      EmptyView="No columns to display"
@@ -37,16 +41,15 @@
                                            HorizontalOptions="Start"
                                            VerticalOptions="Center"
                                            Grid.Column="0"/>
-                                    <Button Text="+" 
-                                            x:Name="addCard"
-                                            FontSize="Large"
-                                            FontAttributes="Bold"
-                                            TextColor="Green"
-                                            BackgroundColor="Transparent"
-                                            HorizontalOptions="End"
-                                            VerticalOptions="Center"
-                                            Grid.Column="1"
-                                            Clicked="addCard_Clicked"/>
+                                    <ImageButton Source="plus.png"
+                                                 HeightRequest="30"
+                                                 WidthRequest="30"
+                                                x:Name="addCard"
+                                                BackgroundColor="Transparent"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center"
+                                                Grid.Column="1"
+                                                Clicked="addCard_Clicked"/>
                                 </Grid>
                                 <Line X1="0"
                                       Y1="0"
