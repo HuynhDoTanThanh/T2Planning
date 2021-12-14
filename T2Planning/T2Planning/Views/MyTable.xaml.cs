@@ -35,8 +35,12 @@ namespace T2Planning.Views
             if (lstTable.SelectedItem != null)
             {
                 Table table = (Table)lstTable.SelectedItem;
+                var nav = new NavigationPage(new TableDetail(table))
+                {
+                    BarBackgroundColor = Color.FromHex("#EB62B9")
 
-                await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new TableDetail(table)));
+                };
+                await Shell.Current.Navigation.PushModalAsync(nav);
             }
         }
 

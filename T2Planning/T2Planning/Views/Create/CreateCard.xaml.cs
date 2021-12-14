@@ -45,7 +45,7 @@ namespace T2Planning.Views.Create
 
         bool checknull()
         {
-            if (string.IsNullOrWhiteSpace(cardName.Text) || string.IsNullOrWhiteSpace(cardDescription.Text) || tableId == null || listCardId == null || cardDeadline == null)
+            if (string.IsNullOrWhiteSpace(cardName.Text) || tableId == null || listCardId == null || cardDeadline == null)
             {
                 return true;
             }
