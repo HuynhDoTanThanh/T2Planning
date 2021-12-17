@@ -1,26 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="T2Planning.Views.Create.CreateTable">
+             x:Class="T2Planning.Views.Create.CreateTable"
+             BackgroundColor="#FDECEB">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <Label Text="Tên bảng" TextColor="Gray"/>
-            <Entry x:Name="tableName"/>
-            <Label Text="Nhóm" TextColor="Gray"/>
-            <Picker x:Name="team" Title="Chọn nhóm" SelectedIndexChanged="team_SelectedIndexChanged">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Bảng Cá nhân</x:String>
-                        <x:String>Không gian làm việc</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            <Label Text="Quyền xem" TextColor="Gray"/>
-            <Picker x:Name="permission" Title="Chọn quyền xem" SelectedIndexChanged="permission_SelectedIndexChanged" >
-            </Picker>
-            <BoxView/>
-            <Button Text="TẠO MỚI" HorizontalOptions="End" BackgroundColor="Transparent"  TextColor="White"
-                    x:Name="create" Clicked="create_Clicked"/>
+            <Frame BorderColor="Gray"
+                    CornerRadius="10"
+                    Padding="5, 5"
+                    BackgroundColor="White"
+                    Margin="5">
+                <StackLayout>
+                    <Label Text="Tên bảng" TextColor="Gray"/>
+                    <Entry x:Name="tableName"/>
+                    <Label Text="Nhóm" TextColor="Gray"/>
+                    <Picker x:Name="team" Title="Chọn nhóm" SelectedIndexChanged="team_SelectedIndexChanged">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Bảng Cá nhân</x:String>
+                                <x:String>Không gian làm việc</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Quyền xem" TextColor="Gray"/>
+                    <Picker x:Name="permission" Title="Chọn quyền xem" SelectedIndexChanged="permission_SelectedIndexChanged" >
+                    </Picker>
+                    <Button Text="TẠO MỚI" HorizontalOptions="End" BackgroundColor="#FD9BC7"  TextColor="White"
+                        x:Name="create" Clicked="create_Clicked"/>
+                    </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

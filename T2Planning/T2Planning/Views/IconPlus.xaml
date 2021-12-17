@@ -21,7 +21,7 @@
         </StackLayout>
 
         <StackLayout Grid.Row="1" Orientation="Horizontal" IsVisible="False" x:Name="FloatMenuItem2" HorizontalOptions="End">
-            <Label Text="Bảng  " VerticalOptions="Center" FontSize="25"/>
+            <Label Text="Bảng  " VerticalOptions="Center" FontSize="20" />
             <Frame BackgroundColor="#751B66" CornerRadius="30" x:Name="FloatButtonItem2">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="FloatMenuItem2Tap" Tapped="FloatMenuItem2Tap_Tapped" />
@@ -34,7 +34,7 @@
                        AbsoluteLayout.LayoutFlags="PositionProportional"
                        AbsoluteLayout.LayoutBounds="1,1,-1,-1"
                        Padding="21, 12, 21, 12">
-        <Label Text="+" TextColor="White" FontSize="23" x:Name="FloatingActionButton"/>
+        <Label Text="+" TextColor="White" FontSize="23" x:Name="FloatingActionButton" FontAttributes="Bold"/>
         <Frame.GestureRecognizers>
             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
         </Frame.GestureRecognizers>
