@@ -63,5 +63,16 @@ namespace T2Planning.Views
         {
             Navigation.PushAsync(new CreateCard());
         }
+
+        private async void lstCardDetail_ItemTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            if (((ListView)sender).SelectedItem != null)
+            {
+                Card card = (Card)((ListView)sender).SelectedItem;
+                await Navigation.PushAsync(new CardDetail(card));
+            }
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }
