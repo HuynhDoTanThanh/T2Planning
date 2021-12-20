@@ -2,6 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="T2Planning.Views.CardDetail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="save.png" x:Name="create" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Frame BorderColor="Gray"
@@ -10,11 +13,18 @@
                     BackgroundColor="#FDECEB"
                     Margin="5">
                 <StackLayout>
-                    <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="50" Padding="1, 1">
+                          
+                        <ImageButton x:Name="update" Source="edit.png" Clicked="update_Clicked" Grid.Column="1" BackgroundColor="#FDECEB"
+                                     HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" WidthRequest="25" />
+                        <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0" 
+                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                    </Grid>
+                    
                     <Picker x:Name="tablechoose" Title="Chọn bảng" SelectedIndex="0" 
-                            SelectedIndexChanged="tablechoose_SelectedIndexChanged" />
+                            SelectedIndexChanged="tablechoose_SelectedIndexChanged" IsEnabled="False"/>
                     <Label Text="Danh sách" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
-                    <Picker x:Name="listchoose" Title="Chọn danh sách" SelectedIndex="0"/>
+                    <Picker x:Name="listchoose" Title="Chọn danh sách" SelectedIndex="0" IsEnabled="False"/>
                     <Label Text="Tên thẻ" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
                     <Entry x:Name="cardName_entry" IsReadOnly="true"/>
                     <Label Text="Mô tả" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
