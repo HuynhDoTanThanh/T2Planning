@@ -14,13 +14,15 @@
                      Grid.ColumnSpan="5"
                      Grid.RowSpan="4"
                      Opacity="0.6"/>
-            <Image x:Name="avatar"
-                   HeightRequest="80"
-                   WidthRequest="80"
-                   Grid.Column="1"
-                   Grid.Row="1"
-                   HorizontalOptions="Start"
-                   VerticalOptions="End"/>
+            <ImageButton HeightRequest="80"
+                         WidthRequest="80"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         HorizontalOptions="Start"
+                         VerticalOptions="End"
+                         x:Name="avatar"
+                         BackgroundColor="Transparent"
+                         Clicked="avatar_Clicked"/>    
 
             <StackLayout VerticalOptions="CenterAndExpand" Grid.Row="1" Margin="10, 0, 0, 0"
                          Grid.Column="2" Grid.ColumnSpan="3" Orientation="Vertical">

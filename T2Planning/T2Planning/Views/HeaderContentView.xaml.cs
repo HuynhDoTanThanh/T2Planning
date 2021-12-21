@@ -24,10 +24,17 @@ namespace T2Planning.Views
         {
             Database database = new Database();
             User user = database.GetUser()[0];
-
+             
             avatar.Source = user.userAvatar;
             userName.Text = user.userName;
             userEmail.Text = user.userEmail;
+        }
+
+        private async void avatar_Clicked(object sender, EventArgs e)
+        {
+
+            Shell.Current.FlyoutIsPresented = false;
+            await Navigation.PushAsync(new ChooseAvatar());
         }
     }
 }
