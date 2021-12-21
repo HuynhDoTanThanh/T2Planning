@@ -5,11 +5,11 @@ using SQLite;
 
 namespace T2Planning.Models
 {
-    public class ListCard
+    public class Member
     {
         [PrimaryKey]
-        public int listCardId { get; set; }
-        public string listCardName { get; set; }
+        public int memberId { get; set; }
         public int tableId { get; set; }
+        public string Uid { get; set; }
     }
 }

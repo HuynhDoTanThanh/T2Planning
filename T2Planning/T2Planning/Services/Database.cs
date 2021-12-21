@@ -20,6 +20,31 @@ namespace T2Planning.Services
                 connection.CreateTable<Card>();
                 connection.CreateTable<ListCard>();
                 connection.CreateTable<Table>();
+                connection.CreateTable<Member>();
+                connection.CreateTable<User>();
+
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool DeleteDatabase()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+
+                var connection = new SQLiteConnection(path);
+
+                connection.DropTable<Card>();
+                connection.DropTable<ListCard>();
+                connection.DropTable<Table>();
+                connection.DropTable<Member>();
+                connection.DropTable<User>();
+
 
                 return true;
             }
@@ -36,6 +61,38 @@ namespace T2Planning.Services
                 var connection = new SQLiteConnection(path);
 
                 connection.Insert(card);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool AddNewMember(Member member)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+                var connection = new SQLiteConnection(path);
+
+                connection.Insert(member);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool AddNewUser(User user)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+                var connection = new SQLiteConnection(path);
+
+                connection.Insert(user);
 
                 return true;
             }
@@ -84,6 +141,34 @@ namespace T2Planning.Services
                 var connection = new SQLiteConnection(path);
 
                 return connection.Table<Table>().ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public List<User> GetUser()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+                var connection = new SQLiteConnection(path);
+
+                return connection.Table<User>().ToList();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public List<Member> GetMember()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+                var connection = new SQLiteConnection(path);
+
+                return connection.Table<Member>().ToList();
             }
             catch
             {

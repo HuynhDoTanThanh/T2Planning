@@ -20,6 +20,10 @@
                 Placeholder="Password"
                 IsPassword="true"
                 x:Name="PasswordInput" />
+            <Entry 
+                Placeholder="Full name"
+                Keyboard="Text"
+                x:Name="NameInput"/>
             <Button
                 Text="Sign Up"
                 Clicked="SignUpClicked"

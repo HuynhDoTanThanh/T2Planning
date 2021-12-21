@@ -14,7 +14,7 @@
                      Grid.ColumnSpan="5"
                      Grid.RowSpan="4"
                      Opacity="0.6"/>
-            <Image Source="delete.png"
+            <Image x:Name="avatar"
                    HeightRequest="80"
                    WidthRequest="80"
                    Grid.Column="1"
@@ -29,12 +29,12 @@
                        TextColor="Black"
                        FontSize="25"
                        FontAttributes="Bold"
-                       Text="Tên user"/>
+                       x:Name="userName"/>
                 <Label HorizontalTextAlignment="Start"
                        VerticalTextAlignment="Center"
                        TextColor="Black"
                        FontAttributes="Bold"
-                       Text="Gmail"/>
+                       x:Name="userEmail"/>
             </StackLayout>
         </Grid>
   </ContentView.Content>

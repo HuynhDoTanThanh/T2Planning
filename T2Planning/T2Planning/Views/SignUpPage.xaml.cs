@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using T2Planning.Models;
 using T2Planning.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,17 +19,30 @@ namespace T2Planning.Views
             InitializeComponent();
             auth = DependencyService.Get<IAuth>();
         }
+
         async void SignUpClicked(object sender, EventArgs e)
         {
-            var user = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
-            if (user != null)
+            var torrent = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
+            if (torrent != null)
             {
+                User user = new User();
+                string Uid = await torrent;
+
+                user.Uid = Uid;
+                user.userEmail = EmailInput.Text;
+                user.userName = NameInput.Text;
+                user.userAvatar = "a0.png";
+
+                Sync sync = new Sync();
+                sync.PushUserAsync(user);
+
+
                 await DisplayAlert("Success", "New User Created", "Ok");
                 var signout = auth.SignOut();
 
                 if (signout)
                 {
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                    await Navigation.PopAsync();
                 }
                 else
                 {

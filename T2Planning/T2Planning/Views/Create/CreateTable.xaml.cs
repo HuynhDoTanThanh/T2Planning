@@ -13,9 +13,11 @@ namespace T2Planning.Views.Create
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateTable : ContentPage
     {
-        public CreateTable()
+        string Uid = "";
+        public CreateTable(string uid)
         {
             InitializeComponent();
+            Uid = uid;
             affordCreate();
         }
 
@@ -23,9 +25,10 @@ namespace T2Planning.Views.Create
         string permissChoosed = "";
 
 
-        private void create_Clicked(object sender, EventArgs e)
+        private async void create_Clicked(object sender, EventArgs e)
         {
             Table table = new Table();
+            table.tableAdmin = Uid;
             table.tableName = tableName.Text;
             if (teamChoosed == "Bảng Cá nhân")
             {
@@ -44,16 +47,29 @@ namespace T2Planning.Views.Create
             {
                 table.tablePermission = 2;
             }
+            //await DisplayAlert("Tạo bảng", "Tạo bảng thành công\n" + "Admin: " 
+            //    + table.tableAdmin + "\nName"
+            //    + table.tableName + "\nNhom: " + table.tableTeam.ToString() 
+            //    + "\nQuyen: " + table.tablePermission.ToString(), "OK");
+            Database database = new Database();
+            Sync sync = new Sync();
+            int tableId = 0;
+            try
+            {
+                tableId = await sync.PushTableAsync(table);
+                Member member = new Member() { tableId = tableId, Uid = Uid };
 
-            Database db = new Database();
-            if (db.AddNewTable(table))
-            {
-                DisplayAlert("Tạo bảng", "Tạo bảng thành công\n" + "name: " + table.tableName + "\nNhom: " + table.tableTeam.ToString() + "\nQuyen: " + table.tablePermission.ToString(), "OK");
+                sync.PushMemberAsync(member);
+                sync.PullMemberAsync(Uid);
+
+                sync.PullTableAsync(Uid);
+
                 Application.Current.MainPage = new MainPage();
+                //sync.PullTableAsync(Uid);
             }
-            else
+            catch
             {
-                DisplayAlert("Tạo bảng", "tạo bảng thất bại", "OK");
+                await DisplayAlert("Tạo bảng", "tạo bảng thất bại", "OK");
             }
         }
 

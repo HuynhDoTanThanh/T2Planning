@@ -22,13 +22,13 @@ namespace T2Planning.Droid
     {
         public string GetUid()
         {
-            var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser.Uid;
+            var user = FirebaseAuth.Instance.CurrentUser.Uid;
             return user;
         }
 
         public bool IsSignIn()
         {
-            var user = Firebase.Auth.FirebaseAuth.Instance.CurrentUser;
+            var user = FirebaseAuth.Instance.CurrentUser;
             return user != null;
         }
 
@@ -36,7 +36,7 @@ namespace T2Planning.Droid
         {
             try
             {
-                var User = await Firebase.Auth.FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
+                var User = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 var token = User.User.Uid;
                 return token;
             }
@@ -56,7 +56,7 @@ namespace T2Planning.Droid
         {
             try
             {
-                Firebase.Auth.FirebaseAuth.Instance.SignOut();
+                FirebaseAuth.Instance.SignOut();
                 return true;
             }
             catch (Exception e)
@@ -69,7 +69,7 @@ namespace T2Planning.Droid
         {
             try
             {
-                var newUser = await Firebase.Auth.FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                var newUser = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
                 var token = newUser.User.Uid;
                 return token;
             }

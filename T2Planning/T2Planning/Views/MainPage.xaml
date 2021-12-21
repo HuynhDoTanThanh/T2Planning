@@ -60,6 +60,8 @@
     <Shell.FlyoutHeader>
         <local:HeaderContentView/>
     </Shell.FlyoutHeader>
+
+    
     <FlyoutItem Title="MyTabApp"
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
@@ -72,9 +74,7 @@
                       Route="MyCard"
                       ContentTemplate="{DataTemplate local:MyCard}"/>
     </FlyoutItem>
-    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
-    </ShellItem>
+    
 
     <FlyoutItem Title="Cài đặt" Icon="icon_feed.png">
         <ShellContent Route="Setting" ContentTemplate="{DataTemplate local:Setting}" />

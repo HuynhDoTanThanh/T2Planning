@@ -7,7 +7,7 @@ namespace T2Planning.Models
 {
     public class Card
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int cardId { get; set; }
         public int tableId { get; set; }
         public int listCardId { get; set; }
