@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="T2Planning.Views.ChooseAvatar">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, *, *, *, *"
+              ColumnDefinitions="*, *, * , *">
+            <ImageButton Source="a0.png"
+                         ClassId="ava0"
+                         x:Name="ava0"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0" Grid.Column="0"/>
+            <ImageButton Source="a1.png"
+                         ClassId="ava1"
+                         x:Name="ava1"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0" Grid.Column="1"/>
+            <ImageButton Source="a2.png"
+                         ClassId="ava2"
+                         x:Name="ava2"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0" Grid.Column="2"/>
+            <ImageButton Source="a3.png"
+                         ClassId="ava3"
+                         x:Name="ava3"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0" Grid.Column="3"/>
+            <ImageButton Source="a4.png"
+                         ClassId="ava4"
+                         x:Name="ava4"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="1" Grid.Column="0"/>
+            <ImageButton Source="a5.png"
+                         ClassId="ava5"
+                         x:Name="ava5"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="1" Grid.Column="1"/>
+            <ImageButton Source="a6.png"
+                         ClassId="ava6"
+                         x:Name="ava6"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="1" Grid.Column="2"/>
+            <ImageButton Source="a7.png"
+                         ClassId="ava7"
+                         x:Name="ava7"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="1" Grid.Column="3"/>
+            <ImageButton Source="a8.png"
+                         ClassId="ava8"
+                         x:Name="ava8"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="2" Grid.Column="0"/>
+            <ImageButton Source="a9.png"
+                         ClassId="ava9"
+                         x:Name="ava9"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="2" Grid.Column="1"/>
+            <ImageButton Source="a10.png"
+                         ClassId="ava10"
+                         x:Name="ava10"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="2" Grid.Column="2"/>
+            <ImageButton Source="a11.png"
+                         ClassId="ava11"
+                         x:Name="ava11"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="2" Grid.Column="3"/>
+            <ImageButton Source="a12.png"
+                         ClassId="ava12"
+                         x:Name="ava12"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="3" Grid.Column="0"/>
+            <ImageButton Source="a13.png"
+                         ClassId="ava13"
+                         x:Name="ava13"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="3" Grid.Column="1"/>
+            <ImageButton Source="a14.png"
+                         ClassId="ava14"
+                         x:Name="ava14"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="3" Grid.Column="2"/>
+            <ImageButton Source="a15.png"
+                         ClassId="ava15"
+                         x:Name="ava15"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="3" Grid.Column="3"/>
+            <ImageButton Source="a16.png"
+                         ClassId="ava16"
+                         x:Name="ava16"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="4" Grid.Column="0"/>
+            <ImageButton Source="a17.png"
+                         ClassId="ava17"
+                         x:Name="ava17"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="4" Grid.Column="1"/>
+            <ImageButton Source="a18.png"
+                         ClassId="ava18"
+                         x:Name="ava18"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="4" Grid.Column="2"/>
+            <ImageButton Source="a19.png"
+                         ClassId="ava19"
+                         x:Name="ava19"
+                         Pressed="pickImage"
+                         BackgroundColor="Transparent"
+                         Grid.Row="4" Grid.Column="3"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

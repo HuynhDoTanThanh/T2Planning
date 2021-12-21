@@ -15,7 +15,7 @@ namespace T2Planning.Views
         public MainPage()
         {
             InitializeComponent();
-
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(MyTable), typeof(MyTable));
             Routing.RegisterRoute(nameof(MyCard), typeof(MyCard));
             Routing.RegisterRoute(nameof(Setting), typeof(Setting));

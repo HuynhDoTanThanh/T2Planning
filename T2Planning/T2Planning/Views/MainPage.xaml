@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:T2Planning.Views">
     <Shell.Resources>
         <ResourceDictionary>
-            <Style x:Key="BaseStyle" TargetType="Element">
+            <Style x:Key="BaseStyle" TargetType="Element" CanCascade="False">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
@@ -60,6 +60,11 @@
     <Shell.FlyoutHeader>
         <local:HeaderContentView/>
     </Shell.FlyoutHeader>
+
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
+
     <FlyoutItem Title="MyTabApp"
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
@@ -72,9 +77,7 @@
                       Route="MyCard"
                       ContentTemplate="{DataTemplate local:MyCard}"/>
     </FlyoutItem>
-    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
-    </ShellItem>
+    
 
     <FlyoutItem Title="Cài đặt" Icon="icon_feed.png">
         <ShellContent Route="Setting" ContentTemplate="{DataTemplate local:Setting}" />

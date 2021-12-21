@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using T2Planning.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -35,6 +36,8 @@ namespace T2Planning.Views
                     await DisplayAlert("ERROR", "Something went wrong, plese try again", "Ok");
                 }
             }
+
+            
         }
     }
 }

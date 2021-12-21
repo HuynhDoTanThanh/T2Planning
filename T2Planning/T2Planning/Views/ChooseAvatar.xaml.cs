@@ -10,19 +10,21 @@ using Xamarin.Forms.Xaml;
 namespace T2Planning.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HeaderContentView : ContentView
+    public partial class ChooseAvatar : ContentPage
     {
-        public HeaderContentView()
+        public ChooseAvatar()
         {
-           
             InitializeComponent();
         }
 
-        private async void avatar_Clicked(object sender, EventArgs e)
+        private void pickImage(object sender, EventArgs e)
         {
+
+           if (ava1.IsPressed)
+           {
+                DisplayAlert("tb", "abc", "ok");
+           }
             
-            Shell.Current.FlyoutIsPresented = false;
-            await Navigation.PushAsync(new ChooseAvatar());
         }
     }
 }
