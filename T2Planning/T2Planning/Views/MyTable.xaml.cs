@@ -21,17 +21,7 @@ namespace T2Planning.Views
             InitializeComponent();
             auth = DependencyService.Get<IAuth>();
             Uid = auth.GetUid();
-            DisplayAlert("Uid:", Uid, "Ok");
             ListViewInit();
-
-            display();
-        }
-
-        async void display()
-        {
-            Database database = new Database();
-            User user = database.GetUser()[0];
-            await DisplayAlert("user:", user.userName +" "+ user.Uid, "ok");
         }
 
         private async void logout_Clicked(object sender, EventArgs e)
@@ -48,7 +38,7 @@ namespace T2Planning.Views
             if (lstTable.SelectedItem != null)
             {
                 Table table = (Table)lstTable.SelectedItem;
-                var nav = new NavigationPage(new TableDetail(table))
+                var nav = new NavigationPage(new TableDetail(table, Uid))
                 {
                     BarBackgroundColor = Color.FromHex("#EB62B9")
 
@@ -110,7 +100,7 @@ namespace T2Planning.Views
 
         private async void FloatMenuItem1Tap_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateCard());
+            await Navigation.PushAsync(new CreateCard(Uid));
         }
     }
 }

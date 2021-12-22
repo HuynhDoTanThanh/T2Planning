@@ -16,13 +16,16 @@ namespace T2Planning.Views
     {
         Table mytable;
         Database db = new Database();
-        public TableDetail(Table table)
+        string Uid;
+        public TableDetail(Table table, string uid)
         {
             InitializeComponent();
             mytable = table;
+            Uid = uid;
             Title = mytable.tableName;
             init();
         }
+
 
         private async void addlst_Clicked(object sender, EventArgs e)
         {
@@ -36,11 +39,18 @@ namespace T2Planning.Views
             {
                 ListCard listCard = new ListCard() { listCardName = listCardName, tableId = mytable.tableId };
 
-                db.AddNewListCard(listCard);
+                Sync sync = new Sync();
+                try
+                {
+                    sync.PushListCard(listCard);
+                    sync.PullListCard(Uid);
+                }
+                catch
+                {
+                    await DisplayAlert("Thông báo", "Tạo mới that bai", "Ok");
+                }
 
                 init();
-
-                await DisplayAlert("Thông báo", "Tạo mới thành công" + "\nTên danh sách: " + listCardName, "Ok");
             }
         }
 
@@ -61,7 +71,7 @@ namespace T2Planning.Views
 
         private void addCard_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CreateCard());
+            Navigation.PushAsync(new CreateCard(Uid, true, mytable));
         }
 
         private async void lstCardDetail_ItemTapped(object sender, SelectedItemChangedEventArgs e)

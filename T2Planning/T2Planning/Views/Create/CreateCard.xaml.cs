@@ -23,9 +23,16 @@ namespace T2Planning.Views.Create
         int? listCardId;
         DateTime cardDeadline;
 
-        public CreateCard()
+        string Uid;
+        bool tableDetail;
+        Table table;
+
+        public CreateCard(string uid, bool tabledetail = false, Table tb = null)
         {
             InitializeComponent();
+            Uid = uid;
+            tableDetail = tabledetail;
+            table = tb;
             init();
         }
 
@@ -125,16 +132,27 @@ namespace T2Planning.Views.Create
                 cardDeadline = cardDeadline
             };
 
-            if (database.AddNewCard(card))
+            Sync sync = new Sync();
+
+            try
             {
-                DisplayAlert("Tạo the", "Tạo the thành công\n" 
-                        + "name: " + card.cardName + "\ndes: " + card.cardDescription.ToString() 
-                        + "\ntable: " + card.tableId.ToString() 
-                        + "\nlistcard: " + card.listCardId.ToString() 
-                        + "\nDate: " + card.cardDeadline.ToString(), "OK");
-                Navigation.PopAsync();
+                sync.PushCard(card);
+                sync.PullCard(Uid);
+                if(tableDetail)
+                {
+                    var nav = new NavigationPage(new TableDetail(table, Uid))
+                    {
+                        BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                    };
+                    Application.Current.MainPage = nav;
+                }
+                else
+                {
+                    Navigation.PopAsync();
+                }
             }
-            else
+            catch
             {
                 DisplayAlert("Tạo the", "tạo the thất bại", "OK");
             }

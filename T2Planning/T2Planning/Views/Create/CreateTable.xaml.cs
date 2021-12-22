@@ -47,25 +47,18 @@ namespace T2Planning.Views.Create
             {
                 table.tablePermission = 2;
             }
-            //await DisplayAlert("Tạo bảng", "Tạo bảng thành công\n" + "Admin: " 
-            //    + table.tableAdmin + "\nName"
-            //    + table.tableName + "\nNhom: " + table.tableTeam.ToString() 
-            //    + "\nQuyen: " + table.tablePermission.ToString(), "OK");
-            Database database = new Database();
             Sync sync = new Sync();
-            int tableId = 0;
             try
             {
-                tableId = await sync.PushTableAsync(table);
+                int tableId = await sync.PushTableAsync(table);
                 Member member = new Member() { tableId = tableId, Uid = Uid };
 
                 sync.PushMemberAsync(member);
                 sync.PullMemberAsync(Uid);
 
-                sync.PullTableAsync(Uid);
+                sync.PullTable(Uid);
 
                 Application.Current.MainPage = new MainPage();
-                //sync.PullTableAsync(Uid);
             }
             catch
             {

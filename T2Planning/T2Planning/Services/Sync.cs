@@ -60,6 +60,33 @@ namespace T2Planning.Services
             }
         }
 
+        public void PullTable(string Uid)
+        {
+            try
+            {
+                Database database = new Database();
+                HttpClient httpClient = new HttpClient();
+                string url = "http://www.t2planning.somee.com/api/ServiceController/GetTable?Uid=";
+                List<Table> tables = new List<Table>();
+                var tableList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
+                tables = JsonConvert.DeserializeObject<List<Table>>(tableList);
+
+                List<Table> tables1 = database.GetTable();
+                foreach (Table table in tables)
+                {
+                    bool containsItem = tables1.Any(item => item.tableId == table.tableId);
+                    if (!containsItem)
+                    {
+                        database.AddNewTable(table);
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         //==============================User===========================//
 
         public async void PushUserAsync(User user)
@@ -185,6 +212,35 @@ namespace T2Planning.Services
             }
         }
 
+        public void PullMember(string Uid)
+        {
+            try
+            {
+                Database database = new Database();
+                HttpClient httpClient = new HttpClient();
+                string url = "http://www.t2planning.somee.com/api/ServiceController/GetMember?Uid=";
+
+                var memberList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
+                List<Member> members;
+
+                members = JsonConvert.DeserializeObject<List<Member>>(memberList);
+
+                List<Member> members1 = database.GetMember();
+                foreach (Member member in members)
+                {
+                    bool containsItem = members1.Any(item => item.memberId == member.memberId);
+                    if (!containsItem)
+                    {
+                        database.AddNewMember(member);
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         //==============================ListCard===========================//
 
         public async void PushListCardAsync(ListCard listCard)
@@ -205,6 +261,22 @@ namespace T2Planning.Services
             }
         }
 
+        public void PushListCard(ListCard listCard)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/AddListCard";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(listCard);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         public async void PullListCardAsync(string Uid)
         {
             try
@@ -214,6 +286,35 @@ namespace T2Planning.Services
                 string url = "http://www.t2planning.somee.com/api/ServiceController/GetListCard?Uid=";
 
                 var LCardList = await httpClient.GetStringAsync(url + Uid);
+                List<ListCard> listCards;
+
+                listCards = JsonConvert.DeserializeObject<List<ListCard>>(LCardList);
+
+                List<ListCard> listCards1 = database.GetListCard();
+                foreach (ListCard listCard in listCards)
+                {
+                    bool containsItem = listCards1.Any(item => item.listCardId == listCard.listCardId);
+                    if (!containsItem)
+                    {
+                        database.AddNewListCard(listCard);
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void PullListCard(string Uid)
+        {
+            try
+            {
+                Database database = new Database();
+                HttpClient httpClient = new HttpClient();
+                string url = "http://www.t2planning.somee.com/api/ServiceController/GetListCard?Uid=";
+
+                var LCardList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
                 List<ListCard> listCards;
 
                 listCards = JsonConvert.DeserializeObject<List<ListCard>>(LCardList);
@@ -254,6 +355,22 @@ namespace T2Planning.Services
             }
         }
 
+        public void PushCard(Card card)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/AddCard";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(card);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         public async void PullCardAsync(string Uid)
         {
             try
@@ -283,6 +400,35 @@ namespace T2Planning.Services
             }
         }
 
+        public void PullCard(string Uid)
+        {
+            try
+            {
+                Database database = new Database();
+                HttpClient httpClient = new HttpClient();
+                string url = "http://www.t2planning.somee.com/api/ServiceController/GetCard?Uid=";
+
+                var cardList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
+                List<Card> cards;
+
+                cards = JsonConvert.DeserializeObject<List<Card>>(cardList);
+
+                List<Card> cards1 = database.GetCard();
+                foreach (Card card in cards)
+                {
+                    bool containsItem = cards1.Any(item => item.cardId == card.cardId);
+                    if (!containsItem)
+                    {
+                        database.AddNewCard(card);
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         //=====================Sync===========================//
         public void PullDB(string Uid)
         {
@@ -290,7 +436,7 @@ namespace T2Planning.Services
             {
                 PullUser(Uid);
                 PullMemberAsync(Uid);
-                PullTableAsync(Uid);
+                PullTable(Uid);
                 PullListCardAsync(Uid);
                 PullCardAsync(Uid);
             }

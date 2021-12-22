@@ -8,7 +8,6 @@ namespace T2Planning
 {
     public partial class App : Application
     {
-        //IAuth auth;
         public App()
         {
             InitializeComponent();
@@ -23,6 +22,7 @@ namespace T2Planning
             }
             MainPage = new NavigationPage(new LoginPage());
         }
+
 
         protected override void OnStart()
         {
