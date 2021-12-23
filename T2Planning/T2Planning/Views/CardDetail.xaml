@@ -22,14 +22,13 @@
                                HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
                     </Grid>
                     
-                    <Picker x:Name="tablechoose" Title="Chọn bảng" SelectedIndex="0" 
-                            SelectedIndexChanged="tablechoose_SelectedIndexChanged" IsEnabled="False"/>
+                    <Label x:Name="tableName_label" TextColor="Black" FontSize="17" Padding="10, 0, 0, 0"/>
                     <Label Text="Danh sách" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
-                    <Picker x:Name="listchoose" Title="Chọn danh sách" SelectedIndex="0" IsEnabled="False"/>
+                    <Label x:Name="listCardName_label" TextColor="Black" FontSize="17" Padding="10, 0, 0, 0"/>
                     <Label Text="Tên thẻ" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
-                    <Entry x:Name="cardName_entry" IsReadOnly="true"/>
+                    <Entry x:Name="cardName_entry" IsReadOnly="true" Margin="10, 0, 0, 0"/>
                     <Label Text="Mô tả" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
-                    <Entry x:Name="cardDescription_entry" IsReadOnly="true"/>
+                    <Entry x:Name="cardDescription_entry" IsReadOnly="true" Margin="10, 0, 0, 0"/>
 
                     <Grid ColumnDefinitions="*, 2*" RowDefinitions="*, *">
                         <Label Text="Deadline" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" FontSize="Large" VerticalOptions="Center" FontAttributes="Bold" Padding="10"/>

@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout  VerticalOptions="Start" BackgroundColor="#FDECEB" Padding="5, 10" >
         
-            <Label Text="Rỗng" x:Name="note" FontSize="30" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+            <Label Text="Rỗng" x:Name="note" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
             <ListView x:Name="lstTable" ItemTapped="lstTable_ItemTapped"
                         SeparatorVisibility="None"
                         BackgroundColor="Transparent"

@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:T2Planning.Views"
              x:Class="T2Planning.Views.TableDetail"
              BackgroundColor="#FEC9DD">
+        <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="setting.png" x:Name="setting" Clicked="setting_Clicked"/>
+    </ContentPage.ToolbarItems>
         <StackLayout>
             <Frame  Margin="20"
                     BorderColor="Gray" CornerRadius="10"
@@ -19,7 +22,8 @@
 	                      EmptyView="No columns to display"
 	                      Loop="False"
 	                      PeekAreaInsets="10"
-                          Margin="5, 10">
+                          Margin="5, 10"
+                          >
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal"/>
                 </CarouselView.ItemsLayout>

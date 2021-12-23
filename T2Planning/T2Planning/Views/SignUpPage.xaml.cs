@@ -20,35 +20,53 @@ namespace T2Planning.Views
             auth = DependencyService.Get<IAuth>();
         }
 
+        bool checknull()
+        {
+            if (string.IsNullOrWhiteSpace(EmailInput.Text) || string.IsNullOrWhiteSpace(PasswordInput.Text) || string.IsNullOrWhiteSpace(NameInput.Text) || string.IsNullOrWhiteSpace(RetypePasswordInput.Text))
+            {
+                DisplayAlert("Thông báo", "Vui lòng điền đầy đủ thông tin", "Ok");
+                return true;
+            }
+            else if (PasswordInput.Text != RetypePasswordInput.Text)
+            {
+                DisplayAlert("Thông báo", "Password retype không trùng với Password", "Ok");
+                return true;
+            }    
+            return false;
+        }
+
         async void SignUpClicked(object sender, EventArgs e)
         {
-            var torrent = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
-            if (torrent != null)
+            if (!checknull())
             {
-                User user = new User();
-                string Uid = await torrent;
-
-                user.Uid = Uid;
-                user.userEmail = EmailInput.Text;
-                user.userName = NameInput.Text;
-                user.userAvatar = "a0.png";
-
-                Sync sync = new Sync();
-                sync.PushUserAsync(user);
-
-
-                await DisplayAlert("Success", "New User Created", "Ok");
-                var signout = auth.SignOut();
-
-                if (signout)
+                var torrent = auth.SignUpWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
+                if (torrent != null)
                 {
-                    await Navigation.PopAsync();
+                    User user = new User();
+                    string Uid = await torrent;
+
+                    user.Uid = Uid;
+                    user.userEmail = EmailInput.Text;
+                    user.userName = NameInput.Text;
+                    user.userAvatar = "a0.png";
+
+                    Sync sync = new Sync();
+                    sync.PushUserAsync(user);
+
+
+                    await DisplayAlert("Success", "New User Created", "Ok");
+                    var signout = auth.SignOut();
+
+                    if (signout)
+                    {
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        await DisplayAlert("ERROR", "Something went wrong, plese try again", "Ok");
+                    }
                 }
-                else
-                {
-                    await DisplayAlert("ERROR", "Something went wrong, plese try again", "Ok");
-                }
-            }
+            } 
         }
     }
 }

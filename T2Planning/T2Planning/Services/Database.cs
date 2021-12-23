@@ -53,6 +53,8 @@ namespace T2Planning.Services
                 return false;
             }
         }
+
+
         public bool AddNewCard(Card card)
         {
             try
@@ -214,6 +216,82 @@ namespace T2Planning.Services
             catch
             {
                 return null;
+            }
+        }
+
+        public void resetTable()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+
+                var connection = new SQLiteConnection(path);
+
+                connection.DeleteAll<Table>();
+            }
+            catch
+            {
+
+            }
+        }
+        public void resetUser()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+
+                var connection = new SQLiteConnection(path);
+
+                connection.DeleteAll<User>();
+            }
+            catch
+            {
+
+            }
+        }
+        public void resetMember()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+
+                var connection = new SQLiteConnection(path);
+
+                connection.DeleteAll<Member>();
+            }
+            catch
+            {
+
+            }
+        }
+        public void resetListCard()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+
+                var connection = new SQLiteConnection(path);
+
+                connection.DeleteAll<ListCard>();
+            }
+            catch
+            {
+
+            }
+        }
+        public void resetCard()
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+
+                var connection = new SQLiteConnection(path);
+
+                connection.DeleteAll<Card>();
+            }
+            catch
+            {
+
             }
         }
     }

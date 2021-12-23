@@ -47,11 +47,7 @@ namespace T2Planning.Services
                 List<Table> tables1 = database.GetTable();
                 foreach (Table table in tables)
                 {
-                    bool containsItem = tables1.Any(item => item.tableId == table.tableId);
-                    if (!containsItem)
-                    {
-                        database.AddNewTable(table);
-                    }
+                    database.AddNewTable(table);
                 }
             }
             catch
@@ -74,12 +70,40 @@ namespace T2Planning.Services
                 List<Table> tables1 = database.GetTable();
                 foreach (Table table in tables)
                 {
-                    bool containsItem = tables1.Any(item => item.tableId == table.tableId);
-                    if (!containsItem)
-                    {
-                        database.AddNewTable(table);
-                    }
+                    database.AddNewTable(table);
                 }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void UpdateTable(Table table)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/UpdateTable";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(table);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void DeleteTable(int tableId)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteTable";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(new { tableId = tableId });
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
             }
             catch
             {
@@ -126,11 +150,7 @@ namespace T2Planning.Services
             {
                 foreach (User user in users)
                 {
-                    bool containsItem = users1.Any(item => item.Uid == user.Uid);
-                    if (!containsItem)
-                    {
-                        database.AddNewUser(user);
-                    }
+                    database.AddNewUser(user);
                 }
             }
         }
@@ -154,12 +174,24 @@ namespace T2Planning.Services
             {
                 foreach (User user in users)
                 {
-                    bool containsItem = users1.Any(item => item.Uid == user.Uid);
-                    if (!containsItem)
-                    {
-                        database.AddNewUser(user);
-                    }
+                    database.AddNewUser(user);
                 }
+            }
+        }
+
+        public void UpdateUser(User user)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/UpdateUser";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(user);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
             }
         }
 
@@ -199,11 +231,7 @@ namespace T2Planning.Services
                 List<Member> members1 = database.GetMember();
                 foreach (Member member in members)
                 {
-                    bool containsItem = members1.Any(item => item.memberId == member.memberId);
-                    if (!containsItem)
-                    {
-                        database.AddNewMember(member);
-                    }
+                    database.AddNewMember(member);
                 }
             }
             catch
@@ -228,12 +256,24 @@ namespace T2Planning.Services
                 List<Member> members1 = database.GetMember();
                 foreach (Member member in members)
                 {
-                    bool containsItem = members1.Any(item => item.memberId == member.memberId);
-                    if (!containsItem)
-                    {
-                        database.AddNewMember(member);
-                    }
+                    database.AddNewMember(member);
                 }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void DeleteMember(int memberId)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteMember";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(new { memberId = memberId });
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
             }
             catch
             {
@@ -293,11 +333,7 @@ namespace T2Planning.Services
                 List<ListCard> listCards1 = database.GetListCard();
                 foreach (ListCard listCard in listCards)
                 {
-                    bool containsItem = listCards1.Any(item => item.listCardId == listCard.listCardId);
-                    if (!containsItem)
-                    {
-                        database.AddNewListCard(listCard);
-                    }
+                    database.AddNewListCard(listCard);
                 }
             }
             catch
@@ -322,12 +358,40 @@ namespace T2Planning.Services
                 List<ListCard> listCards1 = database.GetListCard();
                 foreach (ListCard listCard in listCards)
                 {
-                    bool containsItem = listCards1.Any(item => item.listCardId == listCard.listCardId);
-                    if (!containsItem)
-                    {
-                        database.AddNewListCard(listCard);
-                    }
+                    database.AddNewListCard(listCard);
                 }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void UpdateListCard(ListCard listCard)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/UpdateListCard";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(listCard);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void DeleteListCard(int listCardId)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteListCard";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(new { listCardId = listCardId });
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
             }
             catch
             {
@@ -387,11 +451,7 @@ namespace T2Planning.Services
                 List<Card> cards1 = database.GetCard();
                 foreach (Card card in cards)
                 {
-                    bool containsItem = cards1.Any(item => item.cardId == card.cardId);
-                    if (!containsItem)
-                    {
-                        database.AddNewCard(card);
-                    }
+                    database.AddNewCard(card);
                 }
             }
             catch
@@ -416,12 +476,40 @@ namespace T2Planning.Services
                 List<Card> cards1 = database.GetCard();
                 foreach (Card card in cards)
                 {
-                    bool containsItem = cards1.Any(item => item.cardId == card.cardId);
-                    if (!containsItem)
-                    {
-                        database.AddNewCard(card);
-                    }
+                    database.AddNewCard(card);
                 }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void UpdateCard(Card card)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/UpdateListCard";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(card);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public void DeleteCard(int cardId)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteListCard";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(new { cardId = cardId });
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
             }
             catch
             {

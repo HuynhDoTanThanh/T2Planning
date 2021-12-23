@@ -50,14 +50,14 @@ namespace T2Planning.Views
         void ListViewInit()
         {
             Database db = new Database();
-            List<Table> tableworks = new List<Table>();
-
-            tableworks = db.GetTable();
-            if (tableworks.Count != 0)
+            List<Table> tables = new List<Table>();
+            User user = db.GetUser()[0];
+            tables = db.GetTable();
+            if (tables.Count != 0)
             {
-                note.Text = "Bảng của Thành";
+                note.Text = "Không gian làm việc của " + user.userName.ToString();
             }
-            lstTable.ItemsSource = tableworks;
+            lstTable.ItemsSource = tables;
         }
 
         private bool isOpen = false;

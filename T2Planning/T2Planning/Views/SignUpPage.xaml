@@ -20,6 +20,10 @@
                 Placeholder="Password"
                 IsPassword="true"
                 x:Name="PasswordInput" />
+            <Entry
+                Placeholder="Retype password"
+                IsPassword="true"
+                x:Name="RetypePasswordInput" />
             <Entry 
                 Placeholder="Full name"
                 Keyboard="Text"

@@ -48,17 +48,29 @@ namespace T2Planning.Views.Create
                 table.tablePermission = 2;
             }
             Sync sync = new Sync();
+            Database database = new Database();
             try
             {
                 int tableId = await sync.PushTableAsync(table);
-                Member member = new Member() { tableId = tableId, Uid = Uid };
+                if(tableId != 0)
+                {
+                    Member member = new Member() { tableId = tableId, Uid = Uid };
 
-                sync.PushMemberAsync(member);
-                sync.PullMemberAsync(Uid);
+                    sync.PushMemberAsync(member);
 
-                sync.PullTable(Uid);
+                    database.resetTable();
+                    database.resetMember();
 
-                Application.Current.MainPage = new MainPage();
+                    sync.PullMemberAsync(Uid);
+
+                    sync.PullTable(Uid);
+
+                    Application.Current.MainPage = new MainPage();
+                }
+                else
+                {
+                    await DisplayAlert("Tạo bảng", "tạo bảng thất bại", "OK");
+                }
             }
             catch
             {

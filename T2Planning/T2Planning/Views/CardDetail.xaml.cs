@@ -17,8 +17,8 @@ namespace T2Planning.Views
         List<Table> tables;
         List<ListCard> listCards;
         Card card;
-        string tableChoosed = "";
-        string listChoosed = "";
+        string tableName = "";
+        string listCardName = "";
         int? tableId;
         int listCardId;
         DateTime cardDeadline;
@@ -31,9 +31,7 @@ namespace T2Planning.Views
         {
             InitializeComponent();
             card = cardTake;
-            listCardId = 0;
             init();
-            //listchoose.SelectedIndex = 0;
             cardName_entry.Text = card.cardName;
             cardDescription_entry.Text = card.cardDescription;
             deadlineDay.Date = card.cardDeadline.Date;
@@ -43,108 +41,26 @@ namespace T2Planning.Views
         void init()
         {
             tables = database.GetTable();
+            foreach (Table t in tables)
+            {
+                if (card.tableId == t.tableId)
+                {
+                    tableName = t.tableName;
+                    break;
+                }
+            }
+
             listCards = database.GetListCard();
-            
-            List<string> tablename = new List<string>();
-            foreach (Table table in tables)
+            foreach (ListCard l in listCards)
             {
-                tablename.Add(table.tableName);
-            }
-
-            tablechoose.ItemsSource = tablename;
-            tablechoose.SelectedIndex = card.tableId;
-
-            listCardschoosed = new List<ListCard>();
-            foreach (ListCard listCard in listCards)
-            {
-                if (listCard.tableId == card.tableId)
+                if (card.listCardId == l.listCardId)
                 {
-                    listCardschoosed.Add(listCard);
-                }
-            }
-            
-
-            List<string> listname = new List<string>();
-            if (listCardschoosed != null)
-            {
-                foreach (ListCard listCard in listCardschoosed)
-                {
-                    listname.Add(listCard.listCardName);
-                }
-                listchoose.ItemsSource = listname;
-
-                int index = 0;
-                foreach (ListCard listcard in listCardschoosed)
-                {
-                    if (card.listCardId == listcard.listCardId)
-                    {
-
-                        break;
-                    }
-                    index++;
-                }
-                listchoose.SelectedIndex = index;
-            }
-            
-        }
-
-        private void tablechoose_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var picker = (Picker)sender;
-            int selectedIndex = picker.SelectedIndex;
-
-            if (selectedIndex != -1)
-            {
-                tableChoosed = (string)picker.ItemsSource[selectedIndex];
-            }
-
-            foreach (Table table in tables)
-            {
-                if (table.tableName == tableChoosed)
-                {
-                    tableId = table.tableId;
+                    listCardName = l.listCardName;
                     break;
                 }
             }
-
-            List<ListCard> listCardschoosed = new List<ListCard>();
-            foreach (ListCard listCard in listCards)
-            {
-                if (listCard.tableId == tableId)
-                {
-                    listCardschoosed.Add(listCard);
-                }
-            }
-
-            List<string> listname = new List<string>();
-            if (listCardschoosed != null)
-            {
-                foreach (ListCard listCard in listCardschoosed)
-                {
-                    listname.Add(listCard.listCardName);
-                }
-                listchoose.ItemsSource = listname;
-
-            }
-        }
-
-        private void listchoose_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var picker = (Picker)sender;
-            int selectedIndex = picker.SelectedIndex;
-
-            if (selectedIndex != -1)
-            {
-                listChoosed = (string)picker.ItemsSource[selectedIndex];
-            }
-            foreach (ListCard listCard in listCards)
-            {
-                if ((listCard.listCardName == listChoosed) && (listCard.tableId == tableId))
-                {
-                    listCardId = listCard.listCardId;
-                    break;
-                }
-            }
+            tableName_label.Text = tableName;
+            listCardName_label.Text = listCardName;
         }
 
         private void addCard()
@@ -204,8 +120,6 @@ namespace T2Planning.Views
 
         private void update_Clicked(object sender, EventArgs e)
         {
-            tablechoose.IsEnabled = true;
-            listchoose.IsEnabled = true;
             cardName_entry.IsReadOnly = false;
             cardDescription_entry.IsReadOnly = false;
         }

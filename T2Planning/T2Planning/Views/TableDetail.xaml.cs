@@ -16,6 +16,7 @@ namespace T2Planning.Views
     {
         Table mytable;
         Database db = new Database();
+        Sync sync = new Sync();
         string Uid;
         public TableDetail(Table table, string uid)
         {
@@ -39,10 +40,10 @@ namespace T2Planning.Views
             {
                 ListCard listCard = new ListCard() { listCardName = listCardName, tableId = mytable.tableId };
 
-                Sync sync = new Sync();
                 try
                 {
                     sync.PushListCard(listCard);
+                    db.resetListCard();
                     sync.PullListCard(Uid);
                     var nav = new NavigationPage(new TableDetail(mytable, Uid))
                     {
@@ -68,8 +69,11 @@ namespace T2Planning.Views
 
             foreach (ListCard listCard in listCards)
             {
-                List<Card> cards = db.GetCardWithQuery(listCard.listCardId);
-                listViewCards.Add(new ListViewCard { cards = cards, listCard = listCard });
+                if (listCard.tableId == mytable.tableId)
+                {
+                    List<Card> cards = db.GetCardWithQuery(listCard.listCardId);
+                    listViewCards.Add(new ListViewCard { cards = cards, listCard = listCard });
+                }
             }
             lstcard.ItemsSource = listViewCards;
         }
@@ -95,21 +99,66 @@ namespace T2Planning.Views
         {
             string listCardName_new = await DisplayPromptAsync("Thay đổi tên danh sách", "Tên danh sách mới");
             var listCard = (ListViewCard)lstcard.CurrentItem;
-            //ListCardName current
-            string listCardName = listCard.listCard.listCardName;
             //ListCardId current 
             int listCardID = listCard.listCard.listCardId;
-            await DisplayAlert("Thông báo", listCardID.ToString() + "\n" + listCardName, "Ok");
+
+            ListCard listCard_new = new ListCard() { listCardId = listCardID, listCardName = listCardName_new };
+
+            try
+            {
+                if(!string.IsNullOrWhiteSpace(listCardName_new))
+                {
+                    sync.UpdateListCard(listCard_new);
+                    db.resetListCard();
+                    sync.PullListCard(Uid);
+
+                    var nav = new NavigationPage(new TableDetail(mytable, Uid))
+                    {
+                        BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                    };
+                    Application.Current.MainPage = nav;
+                }
+                else
+                {
+                    await DisplayAlert("Thông báo:", "Vui lòng nhập lại tên danh sách", "Ok");
+                }
+            }
+            catch
+            {
+                await DisplayAlert("Thông báo:", "Thay đổi thất bại", "Ok");
+            }
+
+
         }
 
         private async void deleteListName_Clicked(object sender, EventArgs e)
         {
             var listCard = (ListViewCard)lstcard.CurrentItem;
-            //ListCardName current
-            string listCardName = listCard.listCard.listCardName;
             //ListCardId current 
             int listCardID = listCard.listCard.listCardId;
-            await DisplayAlert("Thông báo", listCardID.ToString() + "\n" + listCardName, "Ok");
+
+            try
+            {
+                sync.DeleteListCard(listCardID);
+                db.resetListCard();
+                sync.PullListCard(Uid);
+
+                var nav = new NavigationPage(new TableDetail(mytable, Uid))
+                {
+                    BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                };
+                Application.Current.MainPage = nav;
+            }
+            catch
+            {
+                await DisplayAlert("Thông báo:", "Xoá thất bại", "Ok");
+            }
+        }
+        private void setting_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EditTablePage(mytable));
         }
     }
 }
