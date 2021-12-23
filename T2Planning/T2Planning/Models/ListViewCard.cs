@@ -6,7 +6,7 @@ namespace T2Planning.Models
 {
     public class ListViewCard
     {
-        public string listCardName { get; set; }
+        public ListCard listCard { get; set; }
         public List<Card> cards { get; set; }
     }
 }

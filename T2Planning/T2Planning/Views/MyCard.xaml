@@ -12,9 +12,6 @@
                    Padding="5, 5"
                    BackgroundColor="#FEC9DD">
                 <ListView x:Name="lstCard" ItemTapped="lstCard_ItemTapped"
-                          xmlns="http://xamarin.com/schemas/2014/forms"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                          x:Class="ConsumerBanking.UserControls.AccountsListView"
                           SeparatorVisibility="None"
                           BackgroundColor="Transparent"
                           HasUnevenRows="True" >

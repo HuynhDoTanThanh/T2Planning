@@ -20,49 +20,61 @@ namespace T2Planning.Views
         public LoginPage()
         {
             InitializeComponent();
-
-            loggedin();
+            auth = DependencyService.Get<IAuth>();
         }
 
-        void loggedin()
+        bool checknull()
         {
-            auth = DependencyService.Get<IAuth>();
-            if (auth.IsSignIn())
+            if (string.IsNullOrWhiteSpace(EmailInput.Text) || string.IsNullOrWhiteSpace(PasswordInput.Text))
             {
-                Uid = auth.GetUid();
-                sync.PullDB(Uid);
-                Application.Current.MainPage = new MainPage();
+                return true;
             }
+            return false;
         }
 
         async void LoginClicked(object sender, EventArgs e)
-        { 
-            string token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
-            if (token != string.Empty)
-            {
-                Uid = auth.GetUid();
-                try
-                {
-                    Database database = new Database();
-                    User user = database.GetUser()[0];
-                    if (Uid != user.Uid)
-                    {
-                        database.DeleteDatabase();
-                        database.CreateDatabase();
-                    }
-                }
-                catch
-                {
+        {
+            stackLoading.BindingContext = this;
+            loading.BindingContext = this;
 
+            IsBusy = true;
+            backStack.IsVisible = false;
+            if (!checknull())
+            {
+                string token = await auth.LoginWithEmailAndPassword(EmailInput.Text, PasswordInput.Text);
+                if (token != string.Empty)
+                {
+                    Uid = auth.GetUid();
+                    try
+                    {
+                        Database database = new Database();
+                        User user = database.GetUser()[0];
+                        if (Uid != user.Uid)
+                        {
+                            database.DeleteDatabase();
+                            database.CreateDatabase();
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                    sync.PullDB(Uid);
+                    Application.Current.MainPage = new MainPage();
                 }
-                sync.PullDB(Uid);
-                Application.Current.MainPage = new MainPage();
+                else
+                {
+                    await DisplayAlert("Authentication Failed", "Email or Password are incorrect", "Ok");
+                }
             }
             else
             {
-                await DisplayAlert("Authentication Failed", "Email or Password are incorrect", "Ok");
+                await DisplayAlert("Thông báo", "Tên đăng nhập hoặc mật khẩu không thể để trống", "Ok");
             }
+            IsBusy = false;
+            backStack.IsVisible = true;
         }
+
         async void SignUpClicked(object sender, EventArgs e)
         {
             var signOut = auth.SignOut();

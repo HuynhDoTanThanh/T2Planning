@@ -35,22 +35,32 @@
                                VerticalOptions="CenterAndExpand">
                             <StackLayout>
                                 <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="80" Padding="1, 1">
-                                    <Label Text="{Binding listCardName}"
+                                    <Label 
+                                           Text="{Binding listCard.listCardName}"
                                            FontSize="Large"
                                            FontAttributes="Bold"
                                            HorizontalOptions="Start"
                                            VerticalOptions="Center"
                                            Grid.Column="0"/>
-                                    <ImageButton Source="plus.png"
-                                                 HeightRequest="30"
-                                                 WidthRequest="30"
-                                                x:Name="addCard"
-                                                BackgroundColor="Transparent"
-                                                HorizontalOptions="End"
-                                                VerticalOptions="Center"
-                                                Grid.Column="1"
-                                                Clicked="addCard_Clicked"/>
-                                </Grid>
+                                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                    <ImageButton Source="edit.png"
+                                                         HeightRequest="30"
+                                                         WidthRequest="30"
+                                                        x:Name="editListName"
+                                                        BackgroundColor="Transparent"
+                                                        HorizontalOptions="End"
+                                                        VerticalOptions="Center"
+                                                        Clicked="editListName_Clicked"/>
+                                    <ImageButton Source="delete.png"
+                                                     HeightRequest="30"
+                                                     WidthRequest="30"
+                                                    x:Name="deleteListName"
+                                                    BackgroundColor="Transparent"
+                                                    HorizontalOptions="End"
+                                                    VerticalOptions="Center"
+                                                    Clicked="deleteListName_Clicked"/>
+                                </StackLayout>
+                            </Grid>
                                 <Line X1="0"
                                       Y1="0"
                                       X2="500"
@@ -69,7 +79,13 @@
 										<local:CardDetail/>
 									</ListView.SelectedItem>
                                 </ListView>
-                            </StackLayout>
+
+                            <Button Text="Thêm thẻ" 
+                                    x:Name="addCard" 
+                                    TextColor="Black" FontSize="16" 
+                                    Clicked="addCard_Clicked"
+                                    CornerRadius="10"/>
+                        </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>

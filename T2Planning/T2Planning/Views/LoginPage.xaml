@@ -2,38 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="T2Planning.Views.LoginPage"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
              BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout
-        VerticalOptions="Center"
-        Margin="20">
-            <Image Source="LogoT2.png"/>
-            <BoxView/>
-            
-            <Entry
-            Placeholder="E-mail"
-            Keyboard="Email"
-            x:Name="EmailInput" />
+        <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Padding="0, 0, 0, 0">
+            <StackLayout
+                x:Name="backStack"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="20"
+                AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1, 1, 1, 1">
+                
+                <Image Source="LogoT2.png"/>
+                <BoxView/>
 
-            <Entry
-            Placeholder="Password"
-            IsPassword="true"
-            x:Name="PasswordInput" />
+                <Entry
+                        Placeholder="E-mail"
+                        Keyboard="Email"
+                        x:Name="EmailInput" />
 
-            <Button
-            Text="Enter"
-            Clicked="LoginClicked"
-            Margin="60, 40"
-            BackgroundColor="#4682B4"
-            TextColor="White" />
+                <Entry
+                        Placeholder="Password"
+                        IsPassword="true"
+                        x:Name="PasswordInput" />
 
-            <Button
-            Text="Create new account"
-            TextColor="#4682B4"
-            HorizontalOptions="Center"
-            BackgroundColor="Transparent"
-            Clicked="SignUpClicked" />
+                <Button
+                        Text="Enter"
+                        Clicked="LoginClicked"
+                        Margin="60, 40"
+                        BackgroundColor="#4682B4"
+                        TextColor="White" />
 
-        </StackLayout>
+                <Button
+                        Text="Create new account"
+                        TextColor="#4682B4"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Transparent"
+                        Clicked="SignUpClicked" />
+
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsBusy}" Padding="12"
+                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" 
+                 x:Name="stackLoading">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" x:Name="loading"/>
+                <Label
+                    FontAttributes="Bold"
+                    Text="Loading..."
+                    TextColor="White" />
+            </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -20,7 +20,26 @@ namespace T2Planning
             {
 
             }
-            MainPage = new NavigationPage(new LoginPage());
+            loggedin();
+        }
+        
+        void loggedin()
+        {
+            IAuth auth;
+            Sync sync = new Sync();
+            string Uid;
+            auth = DependencyService.Get<IAuth>();
+            if (auth.IsSignIn())
+            {
+                Uid = auth.GetUid();
+                sync.PullDB(Uid);
+                MainPage = new MainPage();
+                //await Shell.Current.GoToAsync(nameof(MyTable));
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
         }
 
 

@@ -44,6 +44,12 @@ namespace T2Planning.Views
                 {
                     sync.PushListCard(listCard);
                     sync.PullListCard(Uid);
+                    var nav = new NavigationPage(new TableDetail(mytable, Uid))
+                    {
+                        BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                    };
+                    Application.Current.MainPage = nav;
                 }
                 catch
                 {
@@ -63,7 +69,7 @@ namespace T2Planning.Views
             foreach (ListCard listCard in listCards)
             {
                 List<Card> cards = db.GetCardWithQuery(listCard.listCardId);
-                listViewCards.Add(new ListViewCard { cards = cards, listCardName = listCard.listCardName });
+                listViewCards.Add(new ListViewCard { cards = cards, listCard = listCard });
             }
             lstcard.ItemsSource = listViewCards;
         }
@@ -83,6 +89,27 @@ namespace T2Planning.Views
                 await Navigation.PushAsync(new CardDetail(card));
             }
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private async void editListName_Clicked(object sender, EventArgs e)
+        {
+            string listCardName_new = await DisplayPromptAsync("Thay đổi tên danh sách", "Tên danh sách mới");
+            var listCard = (ListViewCard)lstcard.CurrentItem;
+            //ListCardName current
+            string listCardName = listCard.listCard.listCardName;
+            //ListCardId current 
+            int listCardID = listCard.listCard.listCardId;
+            await DisplayAlert("Thông báo", listCardID.ToString() + "\n" + listCardName, "Ok");
+        }
+
+        private async void deleteListName_Clicked(object sender, EventArgs e)
+        {
+            var listCard = (ListViewCard)lstcard.CurrentItem;
+            //ListCardName current
+            string listCardName = listCard.listCard.listCardName;
+            //ListCardId current 
+            int listCardID = listCard.listCard.listCardId;
+            await DisplayAlert("Thông báo", listCardID.ToString() + "\n" + listCardName, "Ok");
         }
     }
 }
