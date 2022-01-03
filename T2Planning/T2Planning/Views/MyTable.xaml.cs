@@ -24,14 +24,6 @@ namespace T2Planning.Views
             ListViewInit();
         }
 
-        private async void logout_Clicked(object sender, EventArgs e)
-        {
-            var signOut = auth.SignOut();
-            if (signOut)
-            {
-                await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
-            }
-        }
 
         private async void lstTable_ItemTapped(object sender, ItemTappedEventArgs e)
         {

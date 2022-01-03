@@ -25,6 +25,35 @@
                     <Label Text="Quyền xem" TextColor="Gray"/>
                     <Picker x:Name="permission" Title="Chọn quyền xem" SelectedIndexChanged="permission_SelectedIndexChanged" >
                     </Picker>
+                    
+                    <Label Text="Thành viên" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0"/>
+                    <ListView x:Name="listAvatar"
+                              RowHeight="50"
+                              VerticalOptions="Start"
+                              WidthRequest="50"
+                              SeparatorVisibility="None"
+                              VerticalScrollBarVisibility="Never"
+                              Rotation="90"
+                              HorizontalOptions="Center">
+                        <ListView.ItemTemplate >
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Image Source="{Binding userAvatar}" Aspect="AspectFill" 
+                                           Rotation="270"
+                                           HeightRequest="50"
+                                           WidthRequest="50"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <ImageButton x:Name="addMember"
+                                 Source="adduser.png"
+                                 HeightRequest="50"
+                                 WidthRequest="50"
+                                 Clicked="addMember_Clicked"
+                                 BackgroundColor="Transparent"/>
+                    <Label Text="Thành viên" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0"/>
                     <Button Text="TẠO MỚI" HorizontalOptions="End" BackgroundColor="#FD9BC7"  TextColor="White"
                         x:Name="create" Clicked="create_Clicked"/>
                     </StackLayout>

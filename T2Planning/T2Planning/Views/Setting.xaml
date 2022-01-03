@@ -3,10 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="T2Planning.Views.Setting">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10, 10, 10, 10">
+            <ImageButton HeightRequest="80"
+                         WidthRequest="80"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         HorizontalOptions="Center"
+                         VerticalOptions="End"
+                         x:Name="avatar"
+                         BackgroundColor="Transparent"
+                         Clicked="avatar_Clicked"/>
+            <Grid ColumnDefinitions="2*, *">
+
+            </Grid>
+            <Label HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black"
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       x:Name="userName"/>
+            <Label HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       x:Name="userEmail"
+                       FontSize="20"/>
+
+            <Grid ColumnDefinitions="50, 250, 50"
+                  RowDefinitions="50"
+                  Padding="10, 10, 10, 10"
+                  >
+                <Label Text="UID : "
+                       FontSize="Large"
+                       Grid.Column="0"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"/>
+                <Entry Keyboard="Text" 
+                       x:Name="uid_entry"
+                       Grid.Column="1"
+                       FontSize="13"/>
+                <ImageButton Source="copy.png"
+                             BorderColor="Black"
+                             HeightRequest="20"
+                             WidthRequest="20"
+                             x:Name="copyUID"
+                             Clicked="copyUID_Clicked"
+                             Grid.Column="2"
+                             BackgroundColor="Transparent"
+                             Margin="10"
+                             />
+            </Grid>
+            <Button Text="Change password" 
+                    x:Name="changePass"
+                    Clicked="changePass_Clicked"
+                    Padding="30, 0, 30, 0"
+                    Margin="30"/>
+            <Button Text="Log out" 
+                    BackgroundColor="Red"
+                    x:Name="logout"
+                    Clicked="logout_Clicked"
+                    Padding="30, 0, 30, 0"
+                    Margin="30"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

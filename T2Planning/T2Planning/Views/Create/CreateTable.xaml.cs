@@ -14,17 +14,25 @@ namespace T2Planning.Views.Create
     public partial class CreateTable : ContentPage
     {
         string Uid = "";
+        Database db = new Database();
+        List<User> listUser = new List<User>();
         public CreateTable(string uid)
         {
             InitializeComponent();
             Uid = uid;
             affordCreate();
+            User user_cur = db.GetUser()[0];
+            listUser.Add(user_cur);
+            init();
         }
 
         string teamChoosed = "";
         string permissChoosed = "";
 
-
+        void init()
+        {
+            listAvatar.ItemsSource = listUser;
+        }
         private async void create_Clicked(object sender, EventArgs e)
         {
             Table table = new Table();
@@ -48,7 +56,6 @@ namespace T2Planning.Views.Create
                 table.tablePermission = 2;
             }
             Sync sync = new Sync();
-            Database database = new Database();
             try
             {
                 int tableId = await sync.PushTableAsync(table);
@@ -57,12 +64,7 @@ namespace T2Planning.Views.Create
                     Member member = new Member() { tableId = tableId, Uid = Uid };
 
                     sync.PushMemberAsync(member);
-
-                    database.resetTable();
-                    database.resetMember();
-
                     sync.PullMemberAsync(Uid);
-
                     sync.PullTable(Uid);
 
                     Application.Current.MainPage = new MainPage();
@@ -75,6 +77,10 @@ namespace T2Planning.Views.Create
             catch
             {
                 await DisplayAlert("Tạo bảng", "tạo bảng thất bại", "OK");
+            }
+            if (permissChoosed == "Nhóm")
+            {
+                addMember.IsEnabled = true;
             }
         }
 
@@ -136,5 +142,11 @@ namespace T2Planning.Views.Create
             }
             affordCreate();
         }
+
+        private void addMember_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

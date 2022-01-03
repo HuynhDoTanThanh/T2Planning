@@ -44,7 +44,8 @@ namespace T2Planning.Services
                 var tableList = await httpClient.GetStringAsync(url + Uid);
                 tables = JsonConvert.DeserializeObject<List<Table>>(tableList);
 
-                List<Table> tables1 = database.GetTable();
+                database.resetTable();
+
                 foreach (Table table in tables)
                 {
                     database.AddNewTable(table);
@@ -67,7 +68,8 @@ namespace T2Planning.Services
                 var tableList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
                 tables = JsonConvert.DeserializeObject<List<Table>>(tableList);
 
-                List<Table> tables1 = database.GetTable();
+                database.resetTable();
+
                 foreach (Table table in tables)
                 {
                     database.AddNewTable(table);
@@ -141,17 +143,11 @@ namespace T2Planning.Services
 
             users = JsonConvert.DeserializeObject<List<User>>(userList);
 
-            List<User> users1 = database.GetUser();
-            if(users1 == null)
+            database.resetUser();
+
+            foreach (User user in users)
             {
-                database.AddNewUser(users[0]);
-            }
-            else
-            {
-                foreach (User user in users)
-                {
-                    database.AddNewUser(user);
-                }
+                database.AddNewUser(user);
             }
         }
 
@@ -163,19 +159,35 @@ namespace T2Planning.Services
             var userList = Task.Run(() => httpClient.GetStringAsync(url)).Result;
             List<User> users = new List<User>();
 
+            database.resetUser();
+
             users = JsonConvert.DeserializeObject<List<User>>(userList);
 
-            List<User> users1 = database.GetUser();
-            if (users1 == null)
+            database.resetUser();
+
+            foreach (User user in users)
             {
-                database.AddNewUser(users[0]);
+                database.AddNewUser(user);
+            }
+        }
+
+        public User GetUserUid(string Uid)
+        {
+            Database database = new Database();
+            HttpClient httpClient = new HttpClient();
+            var url = "http://www.t2planning.somee.com/api/ServiceController/GetUser?Uid=" + Uid;
+            var userList = Task.Run(() => httpClient.GetStringAsync(url)).Result;
+            List<User> users = new List<User>();
+
+            users = JsonConvert.DeserializeObject<List<User>>(userList);
+
+            if (users != null && users.Count > 0)
+            {
+                return users[0];
             }
             else
             {
-                foreach (User user in users)
-                {
-                    database.AddNewUser(user);
-                }
+                return null;
             }
         }
 
@@ -215,6 +227,22 @@ namespace T2Planning.Services
             }
         }
 
+        public void PushMember(Member member)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/AddMember";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(member);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         public async void PullMemberAsync(string Uid)
         {
             try
@@ -226,9 +254,10 @@ namespace T2Planning.Services
                 var memberList = await httpClient.GetStringAsync(url + Uid);
                 List<Member> members;
 
+                database.resetMember();
+
                 members = JsonConvert.DeserializeObject<List<Member>>(memberList);
 
-                List<Member> members1 = database.GetMember();
                 foreach (Member member in members)
                 {
                     database.AddNewMember(member);
@@ -251,9 +280,10 @@ namespace T2Planning.Services
                 var memberList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
                 List<Member> members;
 
+                database.resetMember();
+
                 members = JsonConvert.DeserializeObject<List<Member>>(memberList);
 
-                List<Member> members1 = database.GetMember();
                 foreach (Member member in members)
                 {
                     database.AddNewMember(member);
@@ -262,6 +292,27 @@ namespace T2Planning.Services
             catch
             {
                 return;
+            }
+        }
+
+        public List<Member> PullTableMember(int tableId)
+        {
+            try
+            {
+                Database database = new Database();
+                HttpClient httpClient = new HttpClient();
+                string url = "http://www.t2planning.somee.com/api/ServiceController/GetTableMember?tableId=";
+
+                var memberList = Task.Run(() => httpClient.GetStringAsync(url + tableId)).Result;
+                List<Member> members;
+
+                members = JsonConvert.DeserializeObject<List<Member>>(memberList);
+
+                return members;
+            }
+            catch
+            {
+                return null;
             }
         }
 
@@ -328,9 +379,10 @@ namespace T2Planning.Services
                 var LCardList = await httpClient.GetStringAsync(url + Uid);
                 List<ListCard> listCards;
 
+                database.resetListCard();
+
                 listCards = JsonConvert.DeserializeObject<List<ListCard>>(LCardList);
 
-                List<ListCard> listCards1 = database.GetListCard();
                 foreach (ListCard listCard in listCards)
                 {
                     database.AddNewListCard(listCard);
@@ -353,9 +405,10 @@ namespace T2Planning.Services
                 var LCardList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
                 List<ListCard> listCards;
 
+                database.resetListCard();
+
                 listCards = JsonConvert.DeserializeObject<List<ListCard>>(LCardList);
 
-                List<ListCard> listCards1 = database.GetListCard();
                 foreach (ListCard listCard in listCards)
                 {
                     database.AddNewListCard(listCard);
@@ -446,9 +499,10 @@ namespace T2Planning.Services
                 var cardList = await httpClient.GetStringAsync(url + Uid);
                 List<Card> cards;
 
+                database.resetCard();
+
                 cards = JsonConvert.DeserializeObject<List<Card>>(cardList);
 
-                List<Card> cards1 = database.GetCard();
                 foreach (Card card in cards)
                 {
                     database.AddNewCard(card);
@@ -470,6 +524,8 @@ namespace T2Planning.Services
 
                 var cardList = Task.Run(() => httpClient.GetStringAsync(url + Uid)).Result;
                 List<Card> cards;
+
+                database.resetCard();
 
                 cards = JsonConvert.DeserializeObject<List<Card>>(cardList);
 

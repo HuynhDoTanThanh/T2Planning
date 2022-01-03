@@ -43,7 +43,6 @@ namespace T2Planning.Views
                 try
                 {
                     sync.PushListCard(listCard);
-                    db.resetListCard();
                     sync.PullListCard(Uid);
                     var nav = new NavigationPage(new TableDetail(mytable, Uid))
                     {

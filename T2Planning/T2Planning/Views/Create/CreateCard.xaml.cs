@@ -133,14 +133,10 @@ namespace T2Planning.Views.Create
             };
 
             Sync sync = new Sync();
-            Database database = new Database();
 
             try
             {
                 sync.PushCard(card);
-
-                database.resetCard();
-
                 sync.PullCard(Uid);
                 if(tableDetail)
                 {
