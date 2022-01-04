@@ -37,7 +37,7 @@
                        TextColor="Black"
                        FontAttributes="Bold"
                        x:Name="userEmail"/>
-            </StackLayout>
+            </StackLayout> 
         </Grid>
   </ContentView.Content>
 </ContentView>

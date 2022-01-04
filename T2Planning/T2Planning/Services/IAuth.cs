@@ -13,5 +13,6 @@ namespace T2Planning.Services
         bool SignOut();
         bool IsSignIn();
         string GetUid();
+        bool ResetPassword(string email);
     }
 }

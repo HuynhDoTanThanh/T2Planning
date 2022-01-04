@@ -133,6 +133,22 @@ namespace T2Planning.Services
             }
         }
 
+        public void PushUser(User user)
+        {
+            try
+            {
+                string url = "http://www.t2planning.somee.com/api/ServiceController/AddUser";
+                HttpClient client = new HttpClient();
+                string jsonData = JsonConvert.SerializeObject(user);
+                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
+            }
+            catch
+            {
+                return;
+            }
+        }
+
         public async void PullUserAsync(string Uid)
         {
             Database database = new Database();
@@ -316,13 +332,13 @@ namespace T2Planning.Services
             }
         }
 
-        public void DeleteMember(int memberId)
+        public void DeleteMember(int tableId, string Uid)
         {
             try
             {
                 string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteMember";
                 HttpClient client = new HttpClient();
-                string jsonData = JsonConvert.SerializeObject(new { memberId = memberId });
+                string jsonData = JsonConvert.SerializeObject(new { tableId = tableId, Uid = Uid});
                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = Task.Run(() => client.PostAsync(url, content)).Result;
             }
@@ -545,7 +561,7 @@ namespace T2Planning.Services
         {
             try
             {
-                string url = "http://www.t2planning.somee.com/api/ServiceController/UpdateListCard";
+                string url = "http://www.t2planning.somee.com/api/ServiceController/UpdateCard";
                 HttpClient client = new HttpClient();
                 string jsonData = JsonConvert.SerializeObject(card);
                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -561,7 +577,7 @@ namespace T2Planning.Services
         {
             try
             {
-                string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteListCard";
+                string url = "http://www.t2planning.somee.com/api/ServiceController/DeleteCard";
                 HttpClient client = new HttpClient();
                 string jsonData = JsonConvert.SerializeObject(new { cardId = cardId });
                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -579,8 +595,8 @@ namespace T2Planning.Services
             try
             {
                 PullUser(Uid);
-                PullMemberAsync(Uid);
                 PullTable(Uid);
+                PullMemberAsync(Uid);
                 PullListCardAsync(Uid);
                 PullCardAsync(Uid);
             }

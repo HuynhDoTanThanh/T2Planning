@@ -11,7 +11,7 @@
             <Frame  Margin="20"
                     BorderColor="Gray" CornerRadius="10"
                     HorizontalOptions="Center" 
-                    Padding="50, 5, 50, 5" >
+                    Padding="50, 5, 50, 5" x:Name="fradd"  IsVisible="false">
                 <Button Text="Thêm danh sách" x:Name="addlst" 
                         BackgroundColor="White" 
                         TextColor="Black"

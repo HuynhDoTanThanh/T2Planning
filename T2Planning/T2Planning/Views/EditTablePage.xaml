@@ -15,46 +15,73 @@
                     Margin="5">
                 <StackLayout>
 
-                    <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="50" Padding="1, 1">
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="100" Padding="1, 1">
 
-                        <ImageButton x:Name="update" Source="edit.png" Clicked="update_Clicked"  Grid.Column="1" BackgroundColor="White"
+                        <ImageButton x:Name="update" Source="edit.png" Clicked="update_Clicked"  Grid.Column="1" Grid.Row="0" BackgroundColor="White"
                                      HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" WidthRequest="25" IsVisible="False"/>
-                        <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0" 
-                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" IsVisible="True"/>
+                        <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"
+                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="0"/>
                     </Grid>
-                    <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0" 
-                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" IsVisible="True"/>
                     <Entry x:Name="tableName" IsReadOnly="True"/>
-                    <Label Text="Admin" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0" 
+                    <Label Text="Admin" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"
                                HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-                    <Label x:Name="admin" TextColor="Black" FontSize="17" Padding="10" Grid.Column="0" 
+                    <Label x:Name="admin" TextColor="Black" FontSize="17" Padding="10"
                                HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-                    <Label x:Name="lbAddMem" 
-                           Text="Thành viên" 
-                           TextColor="Gray" 
-                           FontAttributes="Bold" 
-                           FontSize="20" 
-                           Padding="10" 
-                           Grid.Column="0"/>
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="100" Padding="1, 1">
+
+                        <Label x:Name="lbAddMem" 
+                               Text="Thành viên" 
+                               TextColor="Gray" 
+                               FontAttributes="Bold" 
+                               FontSize="20" 
+                               Padding="10" 
+                               Grid.Column="0"
+                               Grid.Row="0"/>
+                        <ImageButton x:Name="addMember"
+                                     Source="adduser.png"
+                                     HeightRequest="35"
+                                     WidthRequest="35"
+                                     Clicked="addMember_Clicked"
+                                     BackgroundColor="Transparent"
+                                     IsVisible="False"
+                                     IsEnabled="False"
+                                     VerticalOptions="Center"
+                                     HorizontalOptions="End"
+                                     Padding="0, 0, 20, 0"
+                                     Grid.Column="1"
+                                     Grid.Row="0"/>
+                    </Grid>
+                    
                     <ListView x:Name="listAvatar"
                               VerticalOptions="Start"
                               SeparatorVisibility="None"
-                              HorizontalOptions="Center">
+                              HorizontalOptions="Center"
+                              >
                         <ListView.ItemTemplate >
                             <DataTemplate>
-                                <ImageCell ImageSource="{Binding userAvatar}" Text="{Binding userName}"/>
+                                <ViewCell>
+                                    <Grid ColumnDefinitions="*, 3*, *" Padding="5, 5, 5, 5">
+                                        <Image Source="{Binding userAvatar}" 
+                                               Grid.Column="0"/>
+                                        <Label Text="{Binding userName}"
+                                               Grid.Column="1"
+                                               VerticalTextAlignment="Center"/>
+                                        <ImageButton Source="delete.png" 
+                                                     x:Name="deleteMember"
+                                                     Grid.Column="2"
+                                                     HeightRequest="30"
+                                                     WidthRequest="30"
+                                                     Margin="10"
+                                                     BackgroundColor="Transparent"
+                                                     Command="{Binding delete}"
+                                                     CommandParameter ="{Binding Uid}"/>
+                                    </Grid>
+                                </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    
-                    <ImageButton x:Name="addMember"
-                                 Source="adduser.png"
-                                 HeightRequest="50"
-                                 WidthRequest="50"
-                                 Clicked="addMember_Clicked"
-                                 BackgroundColor="Transparent"
-                                 IsVisible="False"
-                                 IsEnabled="False"/>
+
+                    <Button Text="Xoá bảng" x:Name="deleteTable" Clicked="deleteTable_Clicked" IsVisible="false"/>
                 </StackLayout>
             </Frame>
         </StackLayout>

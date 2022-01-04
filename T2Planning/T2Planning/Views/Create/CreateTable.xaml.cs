@@ -23,16 +23,11 @@ namespace T2Planning.Views.Create
             affordCreate();
             User user_cur = db.GetUser()[0];
             listUser.Add(user_cur);
-            init();
         }
 
         string teamChoosed = "";
         string permissChoosed = "";
 
-        void init()
-        {
-            listAvatar.ItemsSource = listUser;
-        }
         private async void create_Clicked(object sender, EventArgs e)
         {
             Table table = new Table();
@@ -67,7 +62,7 @@ namespace T2Planning.Views.Create
                     sync.PullMemberAsync(Uid);
                     sync.PullTable(Uid);
 
-                    Application.Current.MainPage = new MainPage();
+                    Application.Current.MainPage = new MainPage(Uid);
                 }
                 else
                 {
@@ -77,10 +72,6 @@ namespace T2Planning.Views.Create
             catch
             {
                 await DisplayAlert("Tạo bảng", "tạo bảng thất bại", "OK");
-            }
-            if (permissChoosed == "Nhóm")
-            {
-                addMember.IsEnabled = true;
             }
         }
 

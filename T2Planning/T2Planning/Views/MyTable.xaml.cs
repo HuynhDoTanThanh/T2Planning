@@ -84,7 +84,10 @@ namespace T2Planning.Views
             }
         }
 
-
+        private async void sync_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new MainPage(Uid);
+        }
         private async void FloatMenuItem2Tap_Tapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateTable(Uid));

@@ -44,7 +44,10 @@ namespace T2Planning.Views.Create
             List<string> tablename = new List<string>();
             foreach(Table table in tables)
             {
-                tablename.Add(table.tableName);
+                if (Uid == table.tableAdmin)
+                {
+                    tablename.Add(table.tableName);
+                }
             }
 
             tablechoose.ItemsSource = tablename;

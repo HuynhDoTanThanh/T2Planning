@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="T2Planning.Views.MyTable"
              BackgroundColor="#FEC9DD">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="sync.png" x:Name="sync" Clicked="sync_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout  VerticalOptions="Start" BackgroundColor="#FDECEB" Padding="5, 10" >
         

@@ -51,7 +51,7 @@ namespace T2Planning.Views
                     user.userAvatar = "a0.png";
 
                     Sync sync = new Sync();
-                    sync.PushUserAsync(user);
+                    sync.PushUser(user);
 
 
                     await DisplayAlert("Success", "New User Created", "Ok");

@@ -17,7 +17,7 @@
                     <Grid ColumnDefinitions="*, *" RowDefinitions="*" HeightRequest="50" Padding="1, 1">
                           
                         <ImageButton x:Name="update" Source="edit.png" Clicked="update_Clicked" Grid.Column="1" BackgroundColor="#FDECEB"
-                                     HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" WidthRequest="25" />
+                                     HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" WidthRequest="25" IsVisible="false"/>
                         <Label Text="Bảng" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10" Grid.Column="0" 
                                HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
                     </Grid>
@@ -37,6 +37,7 @@
                         <TimePicker x:Name="deadlineTime" Grid.Column="1" Grid.Row="1">
                         </TimePicker>
                     </Grid>
+                    <Button Text="Xoá thẻ" x:Name="delete" Clicked="delete_Clicked"/>
                 </StackLayout>
             </Frame>
         </StackLayout>

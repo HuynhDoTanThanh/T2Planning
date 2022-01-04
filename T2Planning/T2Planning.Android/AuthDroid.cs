@@ -84,5 +84,11 @@ namespace T2Planning.Droid
                 return string.Empty;
             }
         }
+
+        public bool ResetPassword(string email)
+        {
+            FirebaseAuth.Instance.SendPasswordResetEmail(email);
+            return true;
+        }
     }
 }

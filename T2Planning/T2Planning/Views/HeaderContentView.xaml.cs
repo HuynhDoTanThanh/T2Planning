@@ -20,9 +20,10 @@ namespace T2Planning.Views
             init();
         }
 
-        void init()
+        async void init()
         {
             Database database = new Database();
+            await Task.Delay(1000);
             User user = database.GetUser()[0];
              
             avatar.Source = user.userAvatar;

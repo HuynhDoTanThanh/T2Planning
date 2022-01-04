@@ -43,9 +43,9 @@ namespace T2Planning.Views
             await Navigation.PushAsync(new ChooseAvatar());
         }
 
-        private void changePass_Clicked(object sender, EventArgs e)
+        private async void changePass_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new ResetPasswordPage());
         }
 
         private async void copyUID_Clicked(object sender, EventArgs e)

@@ -59,8 +59,7 @@ namespace T2Planning.Views
                     {
 
                     }
-                    sync.PullDB(Uid);
-                    Application.Current.MainPage = new MainPage();
+                    Application.Current.MainPage = new MainPage(Uid);
                 }
                 else
                 {

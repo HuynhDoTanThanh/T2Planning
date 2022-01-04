@@ -19,18 +19,22 @@ namespace T2Planning.Views
         Card card;
         string tableName = "";
         string listCardName = "";
-        int? tableId;
-        int listCardId;
         DateTime cardDeadline;
-        List<ListCard> listCardschoosed;
+        Sync sync = new Sync();
+        string Uid;
+        Table table;
+
         public CardDetail()
         {
             InitializeComponent();
         }
-        public CardDetail(Card cardTake)
+
+        public CardDetail(Card cardTake, string uid, Table tableTake)
         {
             InitializeComponent();
             card = cardTake;
+            Uid = uid;
+            table = tableTake;
             init();
             cardName_entry.Text = card.cardName;
             cardDescription_entry.Text = card.cardDescription;
@@ -40,6 +44,11 @@ namespace T2Planning.Views
         }
         void init()
         {
+            if (Uid == table.tableAdmin)
+            {
+                update.IsVisible = true;
+            }
+
             tables = database.GetTable();
             foreach (Table t in tables)
             {
@@ -81,26 +90,13 @@ namespace T2Planning.Views
             {
                 card.cardDeadline = cardDeadline;
             }
-            
 
-            if (database.AddNewCard(card))
-            {
-                DisplayAlert("Tạo the", "Tạo the thành công\n"
-                        + "name: " + card.cardName 
-                        + "\ndes: " + card.cardDescription.ToString()
-                        + "\ntable: " + card.tableId.ToString()
-                        + "\nlistcard: " + card.listCardId.ToString()
-                        + "\nDate: " + card.cardDeadline.ToString(), "OK");
-                Navigation.PopAsync();
-            }
-            else
-            {
-                DisplayAlert("Tạo the", "tạo the thất bại", "OK");
-            }
+            sync.UpdateCard(card);
+            sync.PullCard(Uid);
         }
         bool checknull()
         {
-            if (string.IsNullOrWhiteSpace(cardName_entry.Text) || tableId == null || listCardId == null || cardDeadline == null)
+            if (string.IsNullOrWhiteSpace(cardName_entry.Text) || cardDeadline == null)
             {
                 return true;
             }
@@ -115,6 +111,12 @@ namespace T2Planning.Views
             else
             {
                 addCard();
+                var nav = new NavigationPage(new TableDetail(table, Uid))
+                {
+                    BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                };
+                Application.Current.MainPage = nav;
             }
         }
 
@@ -122,6 +124,22 @@ namespace T2Planning.Views
         {
             cardName_entry.IsReadOnly = false;
             cardDescription_entry.IsReadOnly = false;
+        }
+
+        private async void delete_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Xoá thành viên", "Bạn có muốn xoá không?", "Có", "Không");
+            if (answer)
+            {
+                sync.DeleteCard(card.cardId);
+
+                var nav = new NavigationPage(new TableDetail(table, Uid))
+                {
+                    BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                };
+                Application.Current.MainPage = nav;
+            }
         }
     }
 }

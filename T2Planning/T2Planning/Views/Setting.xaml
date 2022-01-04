@@ -22,17 +22,22 @@
                        FontSize="40"
                        FontAttributes="Bold"
                        x:Name="userName"/>
-            <Label HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       TextColor="Black"
-                       FontAttributes="Bold"
-                       x:Name="userEmail"
-                       FontSize="20"/>
 
-            <Grid ColumnDefinitions="50, 250, 50"
-                  RowDefinitions="50"
+            <Grid ColumnDefinitions="50, Auto, 50"
+                  RowDefinitions="50, 50"
                   Padding="10, 10, 10, 10"
                   >
+                <Label Text="Email : "
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       FontSize="20"
+                       Grid.Column="0"/>
+                <Label HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       x:Name="userEmail"
+                       FontSize="15"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"/>
                 <Label Text="UID : "
                        FontSize="Large"
                        Grid.Column="0"
@@ -51,7 +56,7 @@
                              Grid.Column="2"
                              BackgroundColor="Transparent"
                              Margin="10"
-                             />
+                             HorizontalOptions="End"/>
             </Grid>
             <Button Text="Change password" 
                     x:Name="changePass"

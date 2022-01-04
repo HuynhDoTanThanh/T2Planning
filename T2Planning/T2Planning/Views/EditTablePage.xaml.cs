@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using T2Planning.Models;
 using T2Planning.Services;
 using Xamarin.Forms;
@@ -17,13 +18,13 @@ namespace T2Planning.Views
     public partial class EditTablePage : ContentPage
     {
         Database db = new Database();
-        Table table = new Table();
         Sync sync = new Sync();
+        Table table;
         User user;
         User useradmin;
         List<Member> members_new = new List<Member>();
 
-        ObservableCollection<User> listUser = new ObservableCollection<User>();
+        ObservableCollection<ShowMember> listUser = new ObservableCollection<ShowMember>();
 
         public EditTablePage()
         {
@@ -50,7 +51,9 @@ namespace T2Planning.Views
 
             foreach(Member member in members)
             {
-                listUser.Add(sync.GetUserUid(member.Uid));
+                User user = sync.GetUserUid(member.Uid);
+                ShowMember showMember = new ShowMember() { Uid = user.Uid, userName = user.userName, userAvatar = user.userAvatar, delete = DeleteEintragCommand };
+                listUser.Add(showMember);
             }
 
 
@@ -61,6 +64,7 @@ namespace T2Planning.Views
                 if(user.Uid == useradmin.Uid)
                 {
                     update.IsVisible = true;
+                    deleteTable.IsVisible = true;
                 }
             }
 
@@ -71,16 +75,21 @@ namespace T2Planning.Views
         }
         private void save_Clicked(object sender, EventArgs e)
         {
-            if (tableName.Text != table.tableName && !(string.IsNullOrWhiteSpace(tableName.Text)))
-            {   
-                table.tableName = tableName.Text;
-                sync.UpdateTable(table);
-                sync.PullTable(user.Uid);
-                foreach(Member member in members_new)
+            if (tableName.Text != table.tableName && !(string.IsNullOrWhiteSpace(tableName.Text)) || members_new.Count > 0)
+            {
+                if (tableName.Text != table.tableName && !(string.IsNullOrWhiteSpace(tableName.Text)))
                 {
-                    sync.PushMember(member);
-                }   
-                DisplayAlert("Thông báo", table.tableName, "Ok");
+                    table.tableName = tableName.Text;
+                    sync.UpdateTable(table);
+                    sync.PullTable(user.Uid);
+                }
+                if (members_new.Count > 0)
+                {
+                    foreach (Member member in members_new)
+                    {
+                        sync.PushMember(member);
+                    }
+                }
                 Navigation.PopAsync();
             }
             else
@@ -105,8 +114,52 @@ namespace T2Planning.Views
 
             if (user != null)
             {
-                listUser.Add(user);
+                ShowMember showMember = new ShowMember() { Uid = user.Uid, userName = user.userName, userAvatar = user.userAvatar, delete = DeleteEintragCommand };
+                listUser.Add(showMember);
                 await DisplayAlert("Thong bao", user.Uid + user.userName, "Ok");
+            }
+        }
+        private Command deleteEintragCommand;
+        public ICommand DeleteEintragCommand
+        {
+            get
+            {
+                if (user.Uid == useradmin.Uid)
+                {
+                    if (deleteEintragCommand == null)
+                    {
+                        deleteEintragCommand = new Command((e) =>
+                        {
+                            string Uid = (e as string);
+                            if (Uid != useradmin.Uid)
+                            {
+                                delete(Uid);
+                            }
+                        }
+                        );
+                    }
+                }
+                return deleteEintragCommand;
+            }
+        }
+
+        async void delete(string Uid)
+        {
+            bool answer = await DisplayAlert("Xoá thành viên", "Bạn có muốn xoá không?", "Có", "Không");
+            if(answer)
+            {
+                sync.DeleteMember(table.tableId, Uid);
+                await Navigation.PushAsync(new EditTablePage(table));
+            }
+        }
+
+        private async void deleteTable_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Xoá thành viên", "Bạn có muốn xoá không?", "Có", "Không");
+            if (answer)
+            {
+                sync.DeleteTable(table.tableId);
+                Application.Current.MainPage = new MainPage(user.Uid);
             }
         }
     }

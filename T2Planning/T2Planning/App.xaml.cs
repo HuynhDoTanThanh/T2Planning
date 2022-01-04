@@ -33,7 +33,7 @@ namespace T2Planning
             {
                 Uid = auth.GetUid();
                 sync.PullDB(Uid);
-                MainPage = new MainPage();
+                MainPage = new MainPage(Uid);
                 //await Shell.Current.GoToAsync(nameof(MyTable));
             }
             else
