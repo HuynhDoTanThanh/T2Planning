@@ -72,23 +72,25 @@
                                       StrokeThickness="3"
                                       Stroke="Gray" />
                                 <ListView x:Name="lstCardDetail" ItemsSource="{Binding cards}" 
-                                          ItemTapped="lstCardDetail_ItemTapped" HasUnevenRows="True">
+                                          ItemTapped="lstCardDetail_ItemTapped"
+                                          SeparatorVisibility="None"
+                                          HasUnevenRows="True">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <Frame
-                                                        BorderColor="Gray" CornerRadius="10"
-                                                        HorizontalOptions="Center">
-                                                    <StackLayout>
-                                                        <Label Text="{Binding cardName}"
-                                                                   FontSize="20"/>
-                                                        <Label Text="{Binding cardDescription}" 
+                                            <Frame BorderColor="Gray"
+                                                   CornerRadius="10"
+                                                   Margin="5">
+                                                <StackLayout>
+                                                    <Label Text="{Binding cardName}"
+                                                                   FontSize="17" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding cardDescription}" 
                                                                     FontSize="15" 
                                                                    VerticalOptions="StartAndExpand"
                                                                     LineBreakMode="WordWrap"
                                                                     MaxLines="100"/>
                                                 </StackLayout>
-                                                </Frame>
+                                            </Frame>
                                         </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
