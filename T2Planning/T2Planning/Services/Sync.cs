@@ -33,30 +33,6 @@ namespace T2Planning.Services
             }
         }
 
-        public async void PullTableAsync(string Uid)
-        {
-            try
-            {
-                Database database = new Database();
-                HttpClient httpClient = new HttpClient();
-                string url = "http://www.t2planning.somee.com/api/ServiceController/GetTable?Uid=";
-                List<Table> tables = new List<Table>();
-                var tableList = await httpClient.GetStringAsync(url + Uid);
-                tables = JsonConvert.DeserializeObject<List<Table>>(tableList);
-
-                database.resetTable();
-
-                foreach (Table table in tables)
-                {
-                    database.AddNewTable(table);
-                }
-            }
-            catch
-            {
-                return;
-            }
-        }
-
         public void PullTable(string Uid)
         {
             try
@@ -115,23 +91,6 @@ namespace T2Planning.Services
 
         //==============================User===========================//
 
-        public async void PushUserAsync(User user)
-        {
-            try
-            {
-                string url = "http://www.t2planning.somee.com/api/ServiceController/AddUser";
-                HttpClient client = new HttpClient();
-                string jsonData = JsonConvert.SerializeObject(user);
-                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                string result = await response.Content.ReadAsStringAsync();
-                Response responseData = JsonConvert.DeserializeObject<Response>(result);
-            }
-            catch
-            {
-                return;
-            }
-        }
 
         public void PushUser(User user)
         {
@@ -149,23 +108,6 @@ namespace T2Planning.Services
             }
         }
 
-        public async void PullUserAsync(string Uid)
-        {
-            Database database = new Database();
-            HttpClient httpClient = new HttpClient();
-            var url = "http://www.t2planning.somee.com/api/ServiceController/GetUser?Uid=" + Uid;
-            var userList = await httpClient.GetStringAsync(url);
-            List<User> users = new List<User>();
-
-            users = JsonConvert.DeserializeObject<List<User>>(userList);
-
-            database.resetUser();
-
-            foreach (User user in users)
-            {
-                database.AddNewUser(user);
-            }
-        }
 
         public void PullUser(string Uid)
         {
@@ -234,8 +176,6 @@ namespace T2Planning.Services
                 string jsonData = JsonConvert.SerializeObject(member);
                 StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync(url, content);
-                string result = await response.Content.ReadAsStringAsync();
-                Response responseData = JsonConvert.DeserializeObject<Response>(result);
             }
             catch
             {
@@ -350,23 +290,6 @@ namespace T2Planning.Services
 
         //==============================ListCard===========================//
 
-        public async void PushListCardAsync(ListCard listCard)
-        {
-            try
-            {
-                string url = "http://www.t2planning.somee.com/api/ServiceController/AddListCard";
-                HttpClient client = new HttpClient();
-                string jsonData = JsonConvert.SerializeObject(listCard);
-                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                string result = await response.Content.ReadAsStringAsync();
-                Response responseData = JsonConvert.DeserializeObject<Response>(result);
-            }
-            catch
-            {
-                return;
-            }
-        }
 
         public void PushListCard(ListCard listCard)
         {
@@ -470,23 +393,21 @@ namespace T2Planning.Services
 
         //==============================Card===========================//
 
-        public async void PushCardAsync(Card card)
-        {
-            try
-            {
-                string url = "http://www.t2planning.somee.com/api/ServiceController/AddCard";
-                HttpClient client = new HttpClient();
-                string jsonData = JsonConvert.SerializeObject(card);
-                StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                string result = await response.Content.ReadAsStringAsync();
-                Response responseData = JsonConvert.DeserializeObject<Response>(result);
-            }
-            catch
-            {
-                return;
-            }
-        }
+        //public async void PushCardAsync(Card card)
+        //{
+        //    try
+        //    {
+        //        string url = "http://www.t2planning.somee.com/api/ServiceController/AddCard";
+        //        HttpClient client = new HttpClient();
+        //        string jsonData = JsonConvert.SerializeObject(card);
+        //        StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+        //        HttpResponseMessage response = await client.PostAsync(url, content);
+        //    }
+        //    catch
+        //    {
+        //        return;
+        //    }
+        //}
 
         public void PushCard(Card card)
         {
