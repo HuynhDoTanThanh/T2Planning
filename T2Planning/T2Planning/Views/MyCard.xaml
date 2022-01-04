@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:views="clr-namespace:T2Planning.Views"
              x:Class="T2Planning.Views.MyCard">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="logout.jpg" x:Name="logout" Clicked="logout_Clicked"/>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Frame BorderColor="Gray"
@@ -25,20 +22,12 @@
                                        Margin="5">
                                     <Grid RowDefinitions="*, *, *"
                                           ColumnDefinitions="*, 50">
-                                        
+
                                         <Label Text="{Binding cardName}" 
                                                BackgroundColor="#FDECEB" 
                                                Padding="10, 10" FontSize="20"
                                                Grid.Row="0" Grid.Column="0"
                                                FontAttributes="Bold"/>
-                                        <ImageButton x:Name="deleteCard"
-                                                     Source="delete.png"
-                                                     Clicked="deleteCard_Clicked"
-                                                     WidthRequest="30" HeightRequest="30"
-                                                     HorizontalOptions="Start" VerticalOptions="End"
-                                                     BackgroundColor="Transparent"
-                                                     Grid.Column="1"
-                                                     Grid.Row="0"/>
                                         <Label Text="{Binding cardDeadline}" 
                                                BackgroundColor="#FDECEB" 
                                                Padding="10, 10" FontSize="15"

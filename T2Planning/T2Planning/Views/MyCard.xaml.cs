@@ -13,28 +13,17 @@ namespace T2Planning.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyCard : ContentPage
     {
-        IAuth auth;
+        Database db = new Database();
 
         public MyCard()
         {
             InitializeComponent();
-            auth = DependencyService.Get<IAuth>();
             ListViewInit();
-        }
-
-        private async void logout_Clicked(object sender, EventArgs e)
-        {
-            var signOut = auth.SignOut();
-            if (signOut)
-            {
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            }
         }
 
 
         void ListViewInit()
         {
-            Database db = new Database();
             List<Card> mycards = new List<Card>();
 
             mycards = db.GetCard();
@@ -44,12 +33,9 @@ namespace T2Planning.Views
 
         private void lstCard_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
-        }
-
-        private void deleteCard_Clicked(object sender, EventArgs e)
-        {
-
+            Card card = e.Item as Card;
+            User user = db.GetUser()[0];
+            Navigation.PushAsync(new CardDetail(card, user.Uid, true));
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="T2Planning.Views.SignUpPage">
+             x:Class="T2Planning.Views.SignUpPage"
+             BackgroundColor="#FEC9DD"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout
             VerticalOptions="Center"
@@ -9,7 +11,7 @@
             <Label
                 Text="Create your account"
                 HorizontalOptions="Center"
-                TextColor="#4682B4"
+                TextColor="#EB62B9"
                 FontSize="30"
                 Margin="0, 20" />
             <Entry
@@ -32,7 +34,7 @@
                 Text="Sign Up"
                 Clicked="SignUpClicked"
                 Margin="60, 40"
-                BackgroundColor="#4682B4"
+                BackgroundColor="#EB62B9"
                 TextColor="White" />
         </StackLayout>
     </ContentPage.Content>

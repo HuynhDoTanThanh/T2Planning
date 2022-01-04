@@ -100,7 +100,7 @@ namespace T2Planning.Views
             if (((ListView)sender).SelectedItem != null)
             {
                 Card card = (Card)((ListView)sender).SelectedItem;
-                await Navigation.PushAsync(new CardDetail(card, Uid, mytable));
+                await Navigation.PushAsync(new CardDetail(card, Uid));
             }
             ((ListView)sender).SelectedItem = null;
         }
@@ -147,7 +147,7 @@ namespace T2Planning.Views
         {
             if (Uid == mytable.tableAdmin)
             {
-                bool answer = await DisplayAlert("Xoá thành viên", "Bạn có muốn xoá không?", "Có", "Không");
+                bool answer = await DisplayAlert("Xoá danh sách", "Bạn có muốn xoá không?", "Có", "Không");
                 if (answer)
                 {
                     var listCard = (ListViewCard)lstcard.CurrentItem;

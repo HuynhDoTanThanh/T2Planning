@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="T2Planning.Views.CardDetail"
-             BackgroundColor="#FEC9DD">
+             BackgroundColor="#FEC9DD"
+             Title="Chi tiết thẻ">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="save.png" x:Name="create" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -26,9 +27,9 @@
                     <Label Text="Danh sách" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
                     <Label x:Name="listCardName_label" TextColor="Black" FontSize="17" Padding="10, 0, 0, 0"/>
                     <Label Text="Tên thẻ" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
-                    <Entry x:Name="cardName_entry" IsReadOnly="true" Margin="10, 0, 0, 0"/>
+                    <Entry x:Name="cardName_entry" IsReadOnly="true" Margin="10, 0, 0, 0" Keyboard="Text"/>
                     <Label Text="Mô tả" TextColor="Gray" FontAttributes="Bold" FontSize="20" Padding="10"/>
-                    <Entry x:Name="cardDescription_entry" IsReadOnly="true" Margin="10, 0, 0, 0"/>
+                    <Entry x:Name="cardDescription_entry" IsReadOnly="true" Margin="10, 0, 0, 0" Keyboard="Text" MaxLength="500"/>
 
                     <Grid ColumnDefinitions="*, 2*" RowDefinitions="*, *">
                         <Label Text="Deadline" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" FontSize="Large" VerticalOptions="Center" FontAttributes="Bold" Padding="10"/>
@@ -37,7 +38,7 @@
                         <TimePicker x:Name="deadlineTime" Grid.Column="1" Grid.Row="1">
                         </TimePicker>
                     </Grid>
-                    <Button Text="Xoá thẻ" x:Name="delete" Clicked="delete_Clicked"/>
+                    <Button Text="Xoá thẻ" x:Name="delete" Clicked="delete_Clicked" IsVisible="false"/>
                 </StackLayout>
             </Frame>
         </StackLayout>

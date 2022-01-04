@@ -219,6 +219,34 @@ namespace T2Planning.Services
             }
         }
 
+        
+        public Table GetTableWithQuery(int tableId)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+                var connection = new SQLiteConnection(path);
+                return connection.Query<Table>("select * from Table where tableId=" + tableId.ToString())[0];
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public ListCard GetListCardWithQuery(int listCardId)
+        {
+            try
+            {
+                string path = System.IO.Path.Combine(folder, "t2planning.db");
+                var connection = new SQLiteConnection(path);
+                return connection.Query<ListCard>("select * from ListCard where listCardId=" + listCardId.ToString())[0];
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void resetTable()
         {
             try

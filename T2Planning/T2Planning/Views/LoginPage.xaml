@@ -33,12 +33,12 @@
                         Text="Enter"
                         Clicked="LoginClicked"
                         Margin="60, 40"
-                        BackgroundColor="#4682B4"
+                        BackgroundColor="#EB62B9"
                         TextColor="White" />
 
                 <Button
                         Text="Create new account"
-                        TextColor="#4682B4"
+                        TextColor="#EB62B9"
                         HorizontalOptions="Center"
                         BackgroundColor="Transparent"
                         Clicked="SignUpClicked" />

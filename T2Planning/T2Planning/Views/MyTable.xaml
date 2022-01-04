@@ -22,7 +22,7 @@
                                     Padding="5, 5"
                                     BackgroundColor="White"
                                     Margin="5">
-                                <Label Text="{Binding tableName}" BackgroundColor="White" Padding="10, 10" FontSize="15"/>
+                                <Label Text="{Binding tableName}" BackgroundColor="White" Padding="10, 10" FontSize="17" FontAttributes="Bold"/>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

@@ -63,5 +63,24 @@ namespace T2Planning.Views
                 await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
             }
         }
+
+        private async void changeName_Clicked(object sender, EventArgs e)
+        {
+            Database database = new Database();
+            User user = database.GetUser()[0];
+
+            string new_userName = await DisplayPromptAsync("Thay đổi tên người dùng", "Tên mới : ");
+            if (new_userName != null)
+            {
+                user.userName = new_userName;
+                Sync sync = new Sync();
+                sync.UpdateUser(user);
+                database.resetUser();
+                sync.PullUser(user.Uid);
+                Application.Current.MainPage = new MainPage(Uid);
+                await DisplayAlert("Thông báo", "Thay đổi tên người dùng thành công", "Ok");
+
+            }
+        }
     }
 }

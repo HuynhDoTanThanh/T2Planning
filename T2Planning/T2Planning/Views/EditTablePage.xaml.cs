@@ -116,7 +116,6 @@ namespace T2Planning.Views
             {
                 ShowMember showMember = new ShowMember() { Uid = user.Uid, userName = user.userName, userAvatar = user.userAvatar, delete = DeleteEintragCommand };
                 listUser.Add(showMember);
-                await DisplayAlert("Thong bao", user.Uid + user.userName, "Ok");
             }
         }
         private Command deleteEintragCommand;
@@ -155,7 +154,7 @@ namespace T2Planning.Views
 
         private async void deleteTable_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Xoá thành viên", "Bạn có muốn xoá không?", "Có", "Không");
+            bool answer = await DisplayAlert("Xoá bảng", "Bạn có muốn xoá không?", "Có", "Không");
             if (answer)
             {
                 sync.DeleteTable(table.tableId);

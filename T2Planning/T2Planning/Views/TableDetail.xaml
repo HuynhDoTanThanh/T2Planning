@@ -71,12 +71,25 @@
                                       Y2="0"
                                       StrokeThickness="3"
                                       Stroke="Gray" />
-                                <ListView x:Name="lstCardDetail" ItemsSource="{Binding cards}" ItemTapped="lstCardDetail_ItemTapped">
+                                <ListView x:Name="lstCardDetail" ItemsSource="{Binding cards}" 
+                                          ItemTapped="lstCardDetail_ItemTapped" HasUnevenRows="True">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <Label Text="{Binding cardName}"/>
-                                            </ViewCell>
+                                                <Frame
+                                                        BorderColor="Gray" CornerRadius="10"
+                                                        HorizontalOptions="Center">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding cardName}"
+                                                                   FontSize="20"/>
+                                                        <Label Text="{Binding cardDescription}" 
+                                                                    FontSize="15" 
+                                                                   VerticalOptions="StartAndExpand"
+                                                                    LineBreakMode="WordWrap"
+                                                                    MaxLines="100"/>
+                                                </StackLayout>
+                                                </Frame>
+                                        </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
 									<ListView.SelectedItem>

@@ -14,14 +14,11 @@ namespace T2Planning.Views
     public partial class CardDetail : ContentPage
     {
         Database database = new Database();
-        List<Table> tables;
-        List<ListCard> listCards;
         Card card;
-        string tableName = "";
-        string listCardName = "";
         DateTime cardDeadline;
         Sync sync = new Sync();
         string Uid;
+        bool ismycard;
         Table table;
 
         public CardDetail()
@@ -29,50 +26,41 @@ namespace T2Planning.Views
             InitializeComponent();
         }
 
-        public CardDetail(Card cardTake, string uid, Table tableTake)
+        public CardDetail(Card cardTake, string uid, bool mycard=false)
         {
             InitializeComponent();
             card = cardTake;
             Uid = uid;
-            table = tableTake;
+            ismycard = mycard;
             init();
             cardName_entry.Text = card.cardName;
             cardDescription_entry.Text = card.cardDescription;
             deadlineDay.Date = card.cardDeadline.Date;
             deadlineTime.Time = card.cardDeadline.TimeOfDay;
-
         }
         void init()
         {
-            if (Uid == table.tableAdmin)
-            {
-                update.IsVisible = true;
-            }
-
-            tables = database.GetTable();
+            List<Table> tables = database.GetTable();
             foreach (Table t in tables)
             {
                 if (card.tableId == t.tableId)
                 {
-                    tableName = t.tableName;
+                    table = t;
                     break;
                 }
             }
 
-            listCards = database.GetListCard();
-            foreach (ListCard l in listCards)
+            if (Uid == table.tableAdmin)
             {
-                if (card.listCardId == l.listCardId)
-                {
-                    listCardName = l.listCardName;
-                    break;
-                }
+                update.IsVisible = true;
+                delete.IsVisible = true;
             }
-            tableName_label.Text = tableName;
-            listCardName_label.Text = listCardName;
+            ListCard listCard = database.GetListCardWithQuery(card.listCardId);
+            tableName_label.Text = table.tableName;
+            listCardName_label.Text = listCard.listCardName;
         }
 
-        private void addCard()
+        private void editCard()
         {
             cardDeadline = deadlineDay.Date.Add(deadlineTime.Time);
 
@@ -102,21 +90,30 @@ namespace T2Planning.Views
             }
             return false;
         }
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            if (checknull())
+            if (Uid == table.tableAdmin)
             {
-                DisplayAlert("Tạo the", "Vui long dien day du thong tin", "OK");
-            }
-            else
-            {
-                addCard();
-                var nav = new NavigationPage(new TableDetail(table, Uid))
+                if (checknull())
                 {
-                    BarBackgroundColor = Color.FromHex("#EB62B9")
+                    await DisplayAlert("Tạo the", "Vui long dien day du thong tin", "OK");
+                }
+                else if (ismycard)
+                {
+                    editCard();
+                    Application.Current.MainPage = new MainPage(Uid);
+                    await Shell.Current.GoToAsync(nameof(MyCard));
+                }
+                else
+                {
+                    editCard();
+                    var nav = new NavigationPage(new TableDetail(table, Uid))
+                    {
+                        BarBackgroundColor = Color.FromHex("#EB62B9")
 
-                };
-                Application.Current.MainPage = nav;
+                    };
+                    Application.Current.MainPage = nav;
+                }
             }
         }
 
@@ -128,17 +125,26 @@ namespace T2Planning.Views
 
         private async void delete_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Xoá thành viên", "Bạn có muốn xoá không?", "Có", "Không");
+            bool answer = await DisplayAlert("Xoá thẻ", "Bạn có muốn xoá không?", "Có", "Không");
             if (answer)
             {
                 sync.DeleteCard(card.cardId);
+                sync.PullCard(Uid);
 
-                var nav = new NavigationPage(new TableDetail(table, Uid))
+                if (ismycard)
                 {
-                    BarBackgroundColor = Color.FromHex("#EB62B9")
+                    Application.Current.MainPage = new MainPage(Uid);
+                    await Shell.Current.GoToAsync(nameof(MyCard));
+                }
+                else
+                {
+                    var nav = new NavigationPage(new TableDetail(table, Uid))
+                    {
+                        BarBackgroundColor = Color.FromHex("#EB62B9")
 
-                };
-                Application.Current.MainPage = nav;
+                    };
+                    Application.Current.MainPage = nav;
+                }
             }
         }
     }
