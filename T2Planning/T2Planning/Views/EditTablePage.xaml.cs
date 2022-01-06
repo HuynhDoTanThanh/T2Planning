@@ -75,7 +75,7 @@ namespace T2Planning.Views
         }
         private void save_Clicked(object sender, EventArgs e)
         {
-            if (tableName.Text != table.tableName && !(string.IsNullOrWhiteSpace(tableName.Text)) || members_new.Count > 0)
+            if ((tableName.Text != table.tableName && !(string.IsNullOrWhiteSpace(tableName.Text))) || members_new.Count > 0)
             {
                 if (tableName.Text != table.tableName && !(string.IsNullOrWhiteSpace(tableName.Text)))
                 {
@@ -90,7 +90,13 @@ namespace T2Planning.Views
                         sync.PushMember(member);
                     }
                 }
-                Navigation.PopAsync();
+                var nav = new NavigationPage(new TableDetail(table, user.Uid))
+                {
+                    BarBackgroundColor = Color.FromHex("#EB62B9")
+
+                };
+                Application.Current.MainPage = new MainPage(user.Uid);
+                Shell.Current.Navigation.PushModalAsync(nav);
             }
             else
             {

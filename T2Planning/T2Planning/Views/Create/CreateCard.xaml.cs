@@ -122,7 +122,7 @@ namespace T2Planning.Views.Create
             }
         }
 
-        private void addCard()
+        private async void addCard()
         {
             cardDeadline = deadlineDay.Date.Add(deadlineTime.Time);
 
@@ -148,16 +148,17 @@ namespace T2Planning.Views.Create
                         BarBackgroundColor = Color.FromHex("#EB62B9")
 
                     };
-                    Application.Current.MainPage = nav;
+                    Application.Current.MainPage = new MainPage(Uid);
+                    await Shell.Current.Navigation.PushModalAsync(nav);
                 }
                 else
                 {
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 }
             }
             catch
             {
-                DisplayAlert("Tạo the", "tạo the thất bại", "OK");
+                await DisplayAlert("Tạo the", "tạo the thất bại", "OK");
             }
         }
 
