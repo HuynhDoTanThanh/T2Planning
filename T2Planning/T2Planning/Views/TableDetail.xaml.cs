@@ -49,7 +49,8 @@ namespace T2Planning.Views
                         BarBackgroundColor = Color.FromHex("#EB62B9")
 
                     };
-                    Application.Current.MainPage = nav;
+                    Application.Current.MainPage = new MainPage(Uid);
+                    await Shell.Current.Navigation.PushModalAsync(nav);
                 }
                 catch
                 {
@@ -129,7 +130,8 @@ namespace T2Planning.Views
                             BarBackgroundColor = Color.FromHex("#EB62B9")
 
                         };
-                        Application.Current.MainPage = nav;
+                        Application.Current.MainPage = new MainPage(Uid);
+                        await Shell.Current.Navigation.PushModalAsync(nav);
                     }
                     else
                     {
@@ -164,7 +166,8 @@ namespace T2Planning.Views
                             BarBackgroundColor = Color.FromHex("#EB62B9")
 
                         };
-                        Application.Current.MainPage = nav;
+                        Application.Current.MainPage = new MainPage(Uid);
+                        await Shell.Current.Navigation.PushModalAsync(nav);
                     }
                     catch
                     {
